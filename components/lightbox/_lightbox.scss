@@ -1,0 +1,17 @@
+h2 + .field--name-field-lightbox-thumbnail,
+.field--name-field-body + .field--name-field-lightbox-thumbnail {
+  margin-top: 1.5rem;
+}
+
+.lightbox .field--name-field-lightbox-thumbnail a[rel~="external"]:after {
+  content: '';
+}
+
+.glightbox-container .glightbox-button-hidden {
+  display: none;
+}
+
+.lightbox .field--name-field-media-image img {
+  width: 100%;
+  height: auto;
+}

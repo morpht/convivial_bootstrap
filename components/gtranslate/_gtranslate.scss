@@ -1,0 +1,6 @@
+.gtranslate {
+  select {
+    @extend .form-select;
+    @extend .form-select-sm;
+  }
+}
