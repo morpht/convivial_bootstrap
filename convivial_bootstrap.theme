@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Convivial AGDS main theme file.
+ * Convivial bootstrap main theme file.
  */
 
 use Drupal\block\Entity\Block;
