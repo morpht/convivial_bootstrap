@@ -165,7 +165,7 @@ header:
 
 lightbox:
   js:
-    js/lightbox.js: { }
+    components/lightbox/lightbox.js: { }
   dependencies:
     - core/jquery
     - core/drupal

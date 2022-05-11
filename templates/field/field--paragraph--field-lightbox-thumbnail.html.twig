@@ -24,28 +24,32 @@
  *
  */
 #}
-{% set classes = [
-  'field',
-  'field--name-' ~ field_name|clean_class,
-  'field--type-' ~ field_type|clean_class,
-  'field--label-' ~ label_display,
-] %}
-{% set title_classes = [
-  'field__label'
-] %}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label'
+  ]
+%}
 <div{{ attributes.addClass(classes) }}>
   {% set field_entity = element['#object'].field_lightbox_media.entity %}
   {% if field_entity.field_media_image %}
-    {% set medium_url = file_url(field_entity.field_media_image.entity.uri.value) %}
+    {% set media_url = file_url(field_entity.field_media_image.entity.uri.value) %}
   {% else %}
-    {% set medium_url = field_entity.field_media_oembed_video.0.value %}
+    {% set media_url = field_entity.field_media_oembed_video.0.value %}
   {% endif %}
   {% for item in items %}
-    <a href="{{ medium_url }}" class="img"
-      {% if field_entity.field_media_image %}
-        data-sizes="(max-width: 800px) 768px, 992px, 1200px, 2400px"
-        data-srcset="{{ medium_url|image_style('full_wide_sm') }} 768w {{ medium_url|image_style('full_wide_md') }} 992w {{ medium_url|image_style('full_wide_lg') }} 1200w {{ medium_url|image_style('full_wide_lg_hi') }} 2400w"
-      {% endif %}
+    <a href="{{ media_url }}" class="img"
+            {% if field_entity.field_media_image %}
+              data-sizes="(max-width: 800px) 768px, 992px, 1200px, 2400px"
+              data-srcset="{{ media_url|image_style('full_wide_sm') }} 768w {{ media_url|image_style('full_wide_md') }} 992w {{ media_url|image_style('full_wide_lg') }} 1200w {{ media_url|image_style('full_wide_lg_hi') }} 2400w"
+            {% endif %}
     >
       {{ item.content }}
     </a>

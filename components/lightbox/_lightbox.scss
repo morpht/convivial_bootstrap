@@ -4,14 +4,9 @@ h2 + .field--name-field-lightbox-thumbnail,
 }
 
 .lightbox .field--name-field-lightbox-thumbnail a[rel~="external"]:after {
-  content: '';
+  display: none;
 }
 
 .glightbox-container .glightbox-button-hidden {
   display: none;
-}
-
-.lightbox .field--name-field-media-image img {
-  width: 100%;
-  height: auto;
 }
