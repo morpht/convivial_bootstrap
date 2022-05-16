@@ -24,16 +24,20 @@
  *
  */
 #}
-{% set classes = [
-  'gallery__grid',
-  'field',
-  'field--name-' ~ field_name|clean_class,
-  'field--type-' ~ field_type|clean_class,
-  'field--label-' ~ label_display,
-] %}
-{% set title_classes = [
-  'field__label'
-] %}
+{%
+  set classes = [
+    'gallery__grid',
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label'
+  ]
+%}
 <div{{ attributes.addClass(classes) }}>
   <div class="list">
     {% for item in items %}
