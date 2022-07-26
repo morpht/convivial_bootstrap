@@ -44,25 +44,18 @@
   view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
 ] %}
 {% block paragraph %}
-  {% set paragraph_parent = paragraph.getParentEntity() %}
-  {% if paragraph.field_answer_step is not empty and paragraph.field_answer_key.value is not empty and  paragraph.field_answer_label.value is not empty %}
-    {% set path_step = paragraph.field_answer_step.entity.id
-      ? path('entity.node.canonical', {'node':  paragraph.field_answer_step.entity.id})
-      : NULL
-    %}
-    {% set path_answer = paragraph_parent.id and paragraph.field_answer_key.value
-      ? path('entity.node.canonical', {'node':  paragraph_parent.id}) ~ '/' ~ paragraph.field_answer_key.value
-      : NULL
-    %}
+  {% if answer.key is not empty
+    and answer.label is not empty
+    and answer.id is not empty %}
     <a
       class="step__answer"
-      href="#node-{{ paragraph.field_answer_step.entity.id }}"
-      data-step-path="{{ path_step }}"
-      data-answer-path="{{ path_answer }}"
-      data-step-id="{{ paragraph.field_answer_step.entity.id }}"
-      data-answer-key="{{ paragraph.field_answer_key.value }}"
+      href="#node-{{ answer.id }}"
+      data-step-id="{{ answer.id }}"
+      data-answer-key="{{ answer.key }}"
+      data-step-path="{{ answer.path_step }}"
+      data-answer-path="{{ answer.path_answer }}"
     >
-      {{ paragraph.field_answer_label.value }}
+      {{ answer.label }}
     </a>
   {% endif %}
 {% endblock paragraph %}
