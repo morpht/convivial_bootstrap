@@ -587,7 +587,7 @@ function convivial_bootstrap_preprocess_paragraph(&$variables) {
 }
 
 /**
- * Implements template_preprocess_paragraph().
+ * Implements template_preprocess_paragraph__timeline().
  */
 function convivial_bootstrap_preprocess_paragraph__timeline(&$variables) {
   $entity = $variables['paragraph'];
@@ -629,11 +629,19 @@ function convivial_bootstrap_preprocess_paragraph__timeline(&$variables) {
 }
 
 /**
- * Implements template_preprocess_paragraph().
+ * Implements template_preprocess_paragraph__geochart().
  */
 function convivial_bootstrap_preprocess_paragraph__geochart(&$variables) {
   require_once __DIR__ . '/includes/geochart.inc';
   _convivial_bootstrap_geochart($variables);
+}
+
+/**
+ * Implements template_preprocess_paragraph__answer().
+ */
+function convivial_bootstrap_preprocess_paragraph__answer(&$variables) {
+  require_once __DIR__ . '/includes/decision_tree.inc';
+  _convivial_bootstrap_answer($variables);
 }
 
 /**
