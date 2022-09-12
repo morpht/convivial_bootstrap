@@ -72,9 +72,6 @@ calendar-item:
 
 content-tabs:
   version: VERSION
-  css:
-    component:
-      components/content-tabs/content-tabs.css: { }
   dependencies:
     - convivial_bootstrap/van11y-accessible-tab-panel-aria
 
@@ -88,9 +85,6 @@ d3:
 
 fastfacts:
   version: VERSION
-  css:
-    component:
-      components/fastfacts/fastfacts.css: { }
   js:
     components/fastfacts/fastfacts.js: { }
   dependencies:
@@ -229,9 +223,6 @@ search_autocomplete:
 
 slideshow:
   version: VERSION
-  css:
-    component:
-      components/slideshow/slideshow.css: { }
   dependencies:
     - convivial_bootstrap/object-fit-images-apply
     - convivial_bootstrap/flexslider-apply
@@ -239,18 +230,6 @@ slideshow:
 smooth-scroll:
   js:
     libraries/smooth-scroll/dist/smooth-scroll.polyfills.min.js: { minified: true }
-
-tiles:
-  version: VERSION
-  css:
-    component:
-      components/tiles/tiles.css: { }
-
-timeline:
-  version: VERSION
-  css:
-    component:
-      components/timeline/timeline.css: { }
 
 van11y-accessible-tab-panel-aria:
   remote: https://github.com/nico3333fr/van11y-accessible-tab-panel-aria

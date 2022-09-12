@@ -1,9 +1,5 @@
 /*! @convivial_bootstrap/tiles */
 
-@import "../../base/scss/bootstrap-required";
-@import "../../base/scss/custom-variables";
-@import "../../base/scss/mixins";
-
 .tiles {
   // Mobile only.
   @include media-breakpoint-down(md) {

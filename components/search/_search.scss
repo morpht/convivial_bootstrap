@@ -12,7 +12,7 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
   @include media-breakpoint-down(md) {
     // We need smaller margin when the inline menu layout is in use.
     .bs-header--inline-menu & {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
     }
   }
 }
@@ -26,7 +26,7 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
   display: none;
   background: transparent;
   border-color: transparent;
-  padding: .5rem;
+  padding: 0.5rem;
 
   // To align the element to the right within a Flex container.
   margin-left: auto;
@@ -57,7 +57,7 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
     line-height: 1;
     margin: 0;
     overflow: hidden;
-    padding: .8rem 2rem .8rem 1rem;
+    padding: 0.8rem 2rem 0.8rem 1rem;
     width: 100%;
 
     &.form-autocomplete {
@@ -65,7 +65,7 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
     }
 
     @include media-breakpoint-down(sm) {
-      font-size: .875rem;
+      font-size: 0.875rem;
       line-height: 1.14286;
     }
   }
@@ -75,10 +75,10 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     line-height: 1;
-    padding: .8rem 2rem;
+    padding: 0.8rem 2rem;
 
     @include media-breakpoint-down(sm) {
-      padding: .8rem 2rem;
+      padding: 0.8rem 2rem;
     }
   }
 }
@@ -166,7 +166,7 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
 
     .searchform__button {
       background-color: transparent;
-      border: 1px solid transparent;
+      border: 0;
       border-radius: 21px;
       padding: 0;
       overflow: hidden;
@@ -175,9 +175,12 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
       min-width: 2.625rem; // Prevents from shrinking button by flex.
 
       &:focus,
+      &:hover,
       &:active {
         box-shadow: none;
         outline: none !important;
+        background: unset;
+        border: unset;
       }
 
       &:before {
@@ -210,10 +213,10 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
       .searchform__query {
         border-top-left-radius: 21px;
         border-bottom-left-radius: 21px;
-        padding: .8rem 2rem .8rem 1rem;
+        padding: 0.8rem 2rem 0.8rem 1rem;
         width: 21.875rem; // Width needs to be specified for inline menu variant.
-        @include transition(width, .500s ease-in);
-        @include transition(padding, .30s ease-in);
+        @include transition(width, 0.5s ease-in);
+        @include transition(padding, 0.3s ease-in);
 
         &:focus,
         &:active {
@@ -251,6 +254,7 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
       flex: 1 1 100%;
       margin: 0 !important;
     }
+
     .form-control {
       background-color: $white;
       border: 1px solid gray;
@@ -264,13 +268,14 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
       height: 100%;
       line-height: 1;
       margin: 0;
-      padding: .8rem 2rem .8rem 1rem;
+      padding: 0.8rem 2rem 0.8rem 1rem;
     }
 
     // Submit.
     .form-actions {
       margin: 0;
     }
+
     .form-submit {
       border: 1px solid #494949;
       border-left-width: 0;
@@ -278,7 +283,7 @@ $search-icon-inverse: url('data:image/svg+xml,<svg width="1.375rem" height="1.37
       border-top-left-radius: 0;
       height: 100%;
       line-height: 1;
-      padding: .8rem 2rem;
+      padding: 0.8rem 2rem;
 
       &:active,
       &:focus,

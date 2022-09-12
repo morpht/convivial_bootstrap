@@ -1,8 +1,5 @@
 /*! @convivial_bootstrap/fastfacts */
 
-@import "../../base/scss/bootstrap-required";
-@import "../../base/scss/custom-variables";
-
 .fastfact {
   h3 {
     margin: 0;
@@ -12,7 +9,7 @@
 .fastfact__value,
 .fastfact__suffix,
 .fastfact__prefix {
-  font-size: $h3-font-size;
+  font-size: $h1-font-size;
   font-weight: $headings-font-weight;
   line-height: $headings-line-height;
 }

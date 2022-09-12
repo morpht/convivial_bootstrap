@@ -1,10 +1,36 @@
 /*! @convivial_bootstrap/color-palette */
 :root {
   --alt-text: rgba(0, 0, 0, 0.6);
+
+  --dark-accent: #9FD5F9;
+  --dark-bg: #064771;
+  --dark-focus: #DBA4F9;
+  --dark-link: #68BEF8;
+
+  --light-accent: #064771;
+  --light-bg: #F0F0F0;
+  --light-focus: #8806AC;
+  --light-link: #066DAC;
+
+  --primary-dark-accent: #FBFCFE;
+  --primary-dark-bg: #066DAC;
+  --primary-dark-focus: #FCF7FD;
+  --primary-dark-link: #FBFCFE;
+
+  --primary-light-accent: #064771;
+  --primary-light-bg: #D9EEFC;
+  --primary-light-focus: #83079C;
+  --primary-light-link: #07609C;
+
+  --standard-accent: #064771;
+  --standard-dark: #000000;
+  --standard-focus: #9506BC;
+  --standard-light: #FFFFFF;
+  --standard-link: #066DAC;
 }
 
 .cp {
-  padding: 2rem $container-padding-x;
+  padding: 2rem $grid-gutter-width / 2;
 }
 
 // Standard.
