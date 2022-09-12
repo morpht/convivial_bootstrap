@@ -105,7 +105,7 @@ flexslider:
 
 flexslider-apply:
   js:
-    components/flexslider/flexslider.apply.js: { }
+    components/slideshow/flexslider.apply.js: { }
   dependencies:
     - core/jquery
     - core/drupal
@@ -220,12 +220,6 @@ search_autocomplete:
     components/search-autocomplete/search-autocomplete.js: { }
   dependencies:
     - core/jquery
-
-slideshow:
-  version: VERSION
-  dependencies:
-    - convivial_bootstrap/object-fit-images-apply
-    - convivial_bootstrap/flexslider-apply
 
 smooth-scroll:
   js:
