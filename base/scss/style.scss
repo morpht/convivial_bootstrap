@@ -1,48 +1,8 @@
 // Variables override.
 @import "variables-override";
 
-// Include parts of Bootstrap
-//
-// scss-docs-start import-stack
-@import "bootstrap-required";
-
-// Layout & components
-@import "../../libraries/bootstrap/scss/root";
-@import "../../libraries/bootstrap/scss/reboot";
-@import "../../libraries/bootstrap/scss/type";
-@import "../../libraries/bootstrap/scss/images";
-@import "../../libraries/bootstrap/scss/containers";
-@import "../../libraries/bootstrap/scss/grid";
-@import "../../libraries/bootstrap/scss/tables";
-@import "../../libraries/bootstrap/scss/forms";
-//@import "../../libraries/bootstrap/scss/buttons";
-@import "../../libraries/bootstrap/scss/transitions";
-@import "../../libraries/bootstrap/scss/dropdown";
-@import "../../libraries/bootstrap/scss/button-group";
-@import "../../libraries/bootstrap/scss/nav";
-@import "../../libraries/bootstrap/scss/navbar";
-@import "../../libraries/bootstrap/scss/card";
-@import "../../libraries/bootstrap/scss/accordion";
-@import "../../libraries/bootstrap/scss/breadcrumb";
-@import "../../libraries/bootstrap/scss/pagination";
-@import "../../libraries/bootstrap/scss/badge";
-@import "../../libraries/bootstrap/scss/alert";
-@import "../../libraries/bootstrap/scss/progress";
-@import "../../libraries/bootstrap/scss/list-group";
-@import "../../libraries/bootstrap/scss/close";
-@import "../../libraries/bootstrap/scss/toasts";
-@import "../../libraries/bootstrap/scss/modal";
-@import "../../libraries/bootstrap/scss/tooltip";
-@import "../../libraries/bootstrap/scss/popover";
-@import "../../libraries/bootstrap/scss/carousel";
-@import "../../libraries/bootstrap/scss/spinners";
-
-// Helpers
-@import "../../libraries/bootstrap/scss/helpers";
-
-// Utilities
-@import "../../libraries/bootstrap/scss/utilities/api";
-// scss-docs-end import-stack
+// Include Bootstrap.
+@import "../../libraries/bootstrap/scss/bootstrap";
 
 // Custom variables.
 @import "custom-variables";
@@ -75,6 +35,7 @@
 @import "components/byline/byline";
 @import "components/callout/callout";
 @import "components/ckeditor/ckeditor";
+@import "components/content-tabs/content-tabs";
 @import "components/cta-link/cta-link";
 @import "components/datatables/datatables";
 @import "components/decision-tree/decision-tree";
@@ -82,6 +43,7 @@
 @import "components/eu-cookie-compliance/eu-cookie-compliance";
 @import "components/external-link/external-link";
 @import "components/facets/facets";
+@import "components/fastfacts/fastfacts";
 @import "components/fields/field";
 @import "components/flipclock/flipclock";
 @import "components/footer/footer";
@@ -115,7 +77,10 @@
 @import "components/search/search";
 @import "components/section/section";
 @import "components/slider/slider";
+@import "components/slideshow/slideshow";
 @import "components/social-share/social-share";
+@import "components/tiles/tiles";
+@import "components/timeline/timeline";
 @import "components/toc/toc";
 @import "components/topbar/topbar";
 @import "components/user-login-form/user-login-form";
