@@ -50,8 +50,9 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
       <div class="containerised">
+        {{ content.field_heading }}
         <div class="accordion">
-          {{ content }}
+          {{ content|without('field_heading') }}
         </div>
       </div>
     {% endblock %}
