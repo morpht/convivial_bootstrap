@@ -42,22 +42,20 @@
 {# Prepare variable for paragraph id. #}
 {% set accordion_item_id = paragraph.id() %}
 
-{%
-  set classes = [
-    'accordion',
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  ]
-%}
+{% set classes = [
+  'accordion',
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+] %}
 {% block paragraph %}
-  {%
-      include '@convivial_bootstrap/paragraphs/accordion/accordion-card.twig' with {
+  <div{{ attributes.addClass(classes) }}>
+    {% include '@convivial_bootstrap/paragraphs/accordion/accordion-card.twig' with {
       id: accordion_item_id,
       title: content.field_heading[0],
       body: content.field_accordion_body[0],
       orientation: paragraph.field_accordion_orientation.value,
       faq: paragraph.field_accordion_make_faq.value
-    } only
-  %}
+    } only %}
+  </div>
 {% endblock paragraph %}
