@@ -38,22 +38,18 @@
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'accordion-group',
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-  ]
-%}
+{% set classes = [
+  'accordion-group',
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+] %}
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
       <div class="containerised">
         {{ content.field_heading }}
-        <div class="accordion">
-          {{ content|without('field_heading') }}
-        </div>
+        {{ content|without('field_heading') }}
       </div>
     {% endblock %}
   </div>
