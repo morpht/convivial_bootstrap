@@ -399,7 +399,7 @@ function convivial_bootstrap_plugin_filter_layout__layout_builder_alter(array &$
   /** @var \Drupal\Core\Layout\LayoutDefinition $definition */
   foreach ($definitions as $key => $definition) {
     // Disable other than this module layouts.
-    if ($definition->getProvider() !== 'convivial_bootstrap') {
+    if ($definition->getProvider() !== 'convivial_layouts') {
       unset($definitions[$key]);
     }
   }
