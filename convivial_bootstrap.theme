@@ -658,7 +658,7 @@ function convivial_bootstrap_preprocess_ds_entity_view(&$variables) {
 function convivial_bootstrap_preprocess_field(&$variables, $hook) {
   switch ($variables['field_name']) {
 
-    case 'body':
+    case 'field_body':
       // Attach Glossary feature if enabled.
       if (theme_get_setting('glossary_enable')) {
         require_once __DIR__ . '/includes/glossary.inc';
