@@ -21,7 +21,7 @@ function _convivial_bootstrap_glossary(&$variables) {
     return;
   }
   // Skip if body value is empty.
-  $body = $entity->get('body')->value;
+  $body = $entity->get('field_body')->value;
   if (empty($body)) {
     return;
   }
@@ -123,7 +123,7 @@ function _convivial_bootstrap_glossary_get_terms($content_type, $widget) {
 
   /** @var \Drupal\node\Entity\Node $node */
   foreach ($nodes as $nid => $node) {
-    $body = $node->get('body')->value;
+    $body = $node->get('field_body')->value;
     if (empty($body)) {
       $body = '';
     }
