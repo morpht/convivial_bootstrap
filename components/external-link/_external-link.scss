@@ -10,10 +10,12 @@ a {
     background-image: escape-svg($external-link-icon);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 0.8rem;
     height: 1rem;
     width: 1rem;
     vertical-align: middle;
     margin-left: .2rem;
+    margin-top: -0.2rem;
     opacity: 0.75;
   }
 
