@@ -15,6 +15,8 @@ libraries:
   - convivial_bootstrap/slider
 ckeditor_stylesheets:
   - css/style.css
+ckeditor5-stylesheets:
+  - css/style.css
 base theme: false
 regions:
   top_bar: 'Top Bar'
