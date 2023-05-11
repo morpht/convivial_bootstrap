@@ -1,12 +1,11 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
 
   'use strict';
 
   Drupal.behaviors.searchAutocomplete = {
     attach: function (context, settings) {
-      const searchFormInput = $('.block-bundle-search .searchform .searchform__query', context)
 
-      searchFormInput.once('searchFormInputFocusIn').focusin(function () {
+      $(once('searchFormInputFocusIn', '.block-bundle-search .searchform .searchform__query', context)).focusin(function () {
         $(this).autocomplete({
           source: function (request, response) {
             $.getJSON("/data/autocomplete?v=" + request.term, function (data) {
@@ -32,9 +31,9 @@
         };
       })
 
-      searchFormInput.once('searchFormInputFocusOut').focusout(function () {
+      $(once('searchFormInputFocusOut', '.block-bundle-search .searchform .searchform__query', context)).focusout(function () {
         $(this).autocomplete('destroy')
       })
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

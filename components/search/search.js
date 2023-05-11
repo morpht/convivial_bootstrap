@@ -3,7 +3,7 @@
  * JS for Search Form.
  */
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
 
   'use strict';
 
@@ -64,40 +64,38 @@
             searchQueryInputSelector = '.searchform__query';
 
         // Search Form is visible on toggler button click.
-        searchform_toggler
-        // .once() prevents this listener being attached mutliple times...
-            .once('convivial_bootstrap_Search--toggler')
-            .on('click', function () {
-              // Toggle class on search form.
-              searchform_block.toggleClass('active');
+        // once() prevents this listener being attached mutliple times...
+        $(once('convivial_bootstrap_Search--toggler', '.searchform-toggler', context))
+          .on('click', function () {
+            // Toggle class on search form.
+            searchform_block.toggleClass('active');
 
-              // Create flag for whether search block is visible.
-              var searchVisible = $(searchform_block).hasClass('active');
+            // Create flag for whether search block is visible.
+            var searchVisible = $(searchform_block).hasClass('active');
 
-              // Toggle class on toggler button.
-              searchform_toggler.toggleClass('active', searchVisible);
+            // Toggle class on toggler button.
+            searchform_toggler.toggleClass('active', searchVisible);
 
-              // Toggle body class to assist in CSS styling when search form is visible.
-              // basically, remove the animated fade-in when Header gets Sticky.
-              $('body').toggleClass('searchform--open', searchVisible);
+            // Toggle body class to assist in CSS styling when search form is visible.
+            // basically, remove the animated fade-in when Header gets Sticky.
+            $('body').toggleClass('searchform--open', searchVisible);
 
-              // Focus on search input field if the form block is visible "active".
-              if (searchVisible) {
-                searchform_block.find(searchQueryInputSelector).focus();
-              }
-            });
+            // Focus on search input field if the form block is visible "active".
+            if (searchVisible) {
+              searchform_block.find(searchQueryInputSelector).focus();
+            }
+          });
 
         // Disable search form submit if text is empty.
-        $(searchform_block, context)
-            .once('convivial_bootstrap_Search--submit')
-            .on('submit', 'form', function (e) {
-              if (!$(searchQueryInputSelector, this).val()) {
-                // Prevent the form from submitting.
-                e.preventDefault();
-              }
-            });
+        $(once('convivial_bootstrap_Search--submit', '.block-bundle-search', context))
+          .on('submit', 'form', function (e) {
+            if (!$(searchQueryInputSelector, this).val()) {
+              // Prevent the form from submitting.
+              e.preventDefault();
+            }
+          });
       }
 
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

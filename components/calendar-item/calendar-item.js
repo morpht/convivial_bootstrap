@@ -3,11 +3,11 @@
  * Add current or past class to calendar item date.
  */
 
-(function ($, Drupal) {
+(function ($, Drupal, once) {
 
   Drupal.behaviors.calendarItemCurrentDate = {
     attach: function attach(context) {
-      $('time.calendar-date', context).once('calendar-date').each(function () {
+      $(once('calendar-date', 'time.calendar-date', context)).each(function () {
         var $calendarDate = $(this);
         var dateTime = $calendarDate.attr('datetime');
         if (dateTime !== null) {
@@ -28,4 +28,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

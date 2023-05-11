@@ -3,7 +3,7 @@
  * JS for the Header.
  */
 
-(function ($) {
+(function ($, Drupal, once) {
   Drupal.behaviors.convivial_bootstrap_Header = {
     attach: function (context, settings) {
       /*
@@ -58,9 +58,8 @@
       };
 
       // Initial the jQuery Fixx plugin.
-      $('.bs-header--sticky ' + stickyElementSelector, context)
-        // .once() prevents this listener being attached multiple times...
-        .once('convivial_bootstrap_Header--fixx')
+        // once() prevents this listener being attached multiple times...
+      $(once('convivial_bootstrap_Header--fixx', '.bs-header--sticky ' + stickyElementSelector, context))
         .fixx({
           // Give the placeholder a class so we can specifically target only this one on the page.
           placeholderClass: 'bs-header-placeholder',
@@ -75,8 +74,7 @@
           startThreshold: 0
         });
 
-      $(window)
-        .once('convivial_bootstrap_Header--window-change')
+      $(once('convivial_bootstrap_Header--window-change', context))
         .on('resize scroll', function () {
           // Check if the Header is Sticky or not and alter the Header.
           if ($(stickyElementSelector).hasClass(stickyClass)) {
@@ -97,7 +95,7 @@
       * Primary Nav toggle.
       */
       // Add class to body when the nav toggler is clicked and nav is visible.
-      $('.navbar', context).once('convivial_bootstrap_header--navbar')
+      $(once('convivial_bootstrap_header--navbar', '.navbar', context))
         .on('show.bs.collapse', function () {
           $('body').addClass(navOpenClass);
           // Switch to theme header styling.
@@ -114,4 +112,4 @@
         });
       }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
