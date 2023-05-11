@@ -1,13 +1,13 @@
 /*
 * Global smooth scroll element to the destination anchor.
 */
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal, drupalSettings, once) {
   Drupal.behaviors.scrollAnchor = {
     attach: function (context, settings) {
       const stickyHeaderHeight = drupalSettings.stickyHeaderHeight || 0
       const scrollTopPadding = 16 + stickyHeaderHeight
 
-      $(document).once('scrollAnchorOnce').on('click', 'a[href^="#"]', function (event) {
+      $(once('scrollAnchorOnce', context)).on('click', 'a[href^="#"]', function (event) {
         event.preventDefault();
 
         $('html, body').animate({
@@ -16,4 +16,4 @@
       });
     }
   };
-})(jQuery, Drupal, drupalSettings)
+})(jQuery, Drupal, drupalSettings, once)

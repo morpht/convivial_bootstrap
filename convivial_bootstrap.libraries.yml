@@ -39,7 +39,7 @@ base-bootstrap5-js:
     js/convivial-bootstrap.js: { }
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/once
     - core/drupal
 
 billboard:
@@ -58,8 +58,9 @@ billboard-apply:
     components/billboard/billboard.apply.js: { }
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/drupal
     - core/drupalSettings
+    - core/once
     - convivial_bootstrap/d3
     - convivial_bootstrap/billboard
 
@@ -68,7 +69,8 @@ calendar-item:
     components/calendar-item/calendar-item.js: { }
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/drupal
+    - core/once
 
 content-tabs:
   version: VERSION
@@ -154,8 +156,8 @@ header:
     components/header/header.js: { }
   dependencies:
     - core/jquery
-    - core/jquery.once
     - core/drupal
+    - core/once
 
 lightbox:
   js:
@@ -214,12 +216,16 @@ search:
     components/search/search.js: { }
   dependencies:
     - core/jquery
+    - core/drupal
+    - core/once
 
 search_autocomplete:
   js:
     components/search-autocomplete/search-autocomplete.js: { }
   dependencies:
     - core/jquery
+    - core/drupal
+    - core/once
 
 smooth-scroll:
   js:
@@ -240,11 +246,18 @@ scroll_anchor:
     js/scroll-anchor.js: { }
   dependencies:
     - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
     - convivial_bootstrap/sticky_header_height
 
 sticky_header_height:
   js:
     js/sticky-header-height.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
 
 slick_carousel:
   js:
@@ -265,6 +278,6 @@ decision-tree:
     components/decision-tree/decision-tree.js: { }
   dependencies:
     - core/jquery
-    - core/jquery.once
+    - core/drupal
     - core/js-cookie
     - core/drupalSettings
