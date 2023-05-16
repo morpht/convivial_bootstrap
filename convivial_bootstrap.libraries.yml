@@ -273,11 +273,10 @@ slider:
   dependencies:
     - convivial_bootstrap/slick_carousel
 
-decision-tree:
+decision_tree_library:
+  version: 0.1.1
   js:
-    components/decision-tree/decision-tree.js: { }
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/js-cookie
-    - core/drupalSettings
+    //cdn.jsdelivr.net/gh/morpht/decision_tree@v0.1.1/decision_tree.min.js: { type: external, minified: true }
+  css:
+    theme:
+      //cdn.jsdelivr.net/gh/morpht/decision_tree@v0.1.1/style.min.css: { type: external, minified: true }
