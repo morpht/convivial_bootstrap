@@ -185,22 +185,8 @@ function convivial_bootstrap_preprocess_page(&$variables) {
         $variables['attributes']['class'][] = trim($item['value']);
       }
     }
-    // Only on decision trees.
     if ($node->getType() === 'decision_tree') {
-      $variables['#attached']['drupalSettings']['decision_tree']['valid'] = FALSE;
-      $variables['#attached']['drupalSettings']['decision_tree']['id'] = $node->id();
-      $variables['#attached']['drupalSettings']['decision_tree']['first_step'] = $node->get('field_decision_tree_first_step')
-        ->first() ? $node->get('field_decision_tree_first_step')
-        ->first()
-        ->getValue()['target_id'] : 0;
-      $variables['#attached']['drupalSettings']['decision_tree']['info_heading'] = '';
-      if ($node->get('field_decision_tree_info_heading')->getString()) {
-        $variables['#attached']['drupalSettings']['decision_tree']['info_heading'] = $node->get('field_decision_tree_info_heading')->getString();
-      }
-      if ($node->id() && $variables['#attached']['drupalSettings']['decision_tree']['first_step'] > 0) {
-        $variables['#attached']['drupalSettings']['decision_tree']['valid'] = TRUE;
-      }
-      $variables['#attached']['library'][] = 'convivial_bootstrap/decision-tree';
+      $variables['#attached']['library'][] = 'convivial_bootstrap/decision_tree_library';
     }
   }
 
@@ -634,14 +620,6 @@ function convivial_bootstrap_preprocess_paragraph__timeline(&$variables) {
 function convivial_bootstrap_preprocess_paragraph__geochart(&$variables) {
   require_once __DIR__ . '/includes/geochart.inc';
   _convivial_bootstrap_geochart($variables);
-}
-
-/**
- * Implements template_preprocess_paragraph__answer().
- */
-function convivial_bootstrap_preprocess_paragraph__answer(&$variables) {
-  require_once __DIR__ . '/includes/decision_tree.inc';
-  _convivial_bootstrap_answer($variables);
 }
 
 /**
