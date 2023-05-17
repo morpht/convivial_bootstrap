@@ -43,7 +43,8 @@
         <div class="tabs js-tabs">
           <ul class="nav nav-tabs mb-3 js-tablist">
             {# Loops through the tab sections to print the tab section titles. #}
-            {% for key, item in content.field_cts_tabs if key|first != '#' %}
+            {% for key, item in content.field_cts_tabs %}
+              {% if key|first != '#' %}
               {% if item['#paragraph'].field_ct_id.value %}
                 {% set tabId = item['#paragraph'].field_ct_id.value %}
               {% else %}
@@ -54,6 +55,7 @@
                   {{ item['#paragraph'].field_ct_label.value }}
                 </a>
               </li>
+              {% endif %}
             {% endfor %}
           </ul>
           <div class="tab-content">
