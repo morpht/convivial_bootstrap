@@ -276,7 +276,7 @@ slider:
 decision_tree_library:
   version: 0.1.1
   js:
-    //cdn.jsdelivr.net/gh/morpht/decision_tree@v0.1.1/decision_tree.min.js: { type: external, minified: true }
+    //cdn.jsdelivr.net/gh/morpht/decision_tree@v0.1.2/decision_tree.min.js: { type: external, minified: true }
   css:
     theme:
-      //cdn.jsdelivr.net/gh/morpht/decision_tree@v0.1.1/style.min.css: { type: external, minified: true }
+      //cdn.jsdelivr.net/gh/morpht/decision_tree@v0.1.2/style.min.css: { type: external, minified: true }
