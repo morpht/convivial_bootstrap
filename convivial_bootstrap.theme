@@ -185,9 +185,6 @@ function convivial_bootstrap_preprocess_page(&$variables) {
         $variables['attributes']['class'][] = trim($item['value']);
       }
     }
-    if ($node->getType() === 'decision_tree') {
-      $variables['#attached']['library'][] = 'convivial_bootstrap/decision_tree_library';
-    }
   }
 
   // Attach the library mark_external_links.
@@ -620,6 +617,13 @@ function convivial_bootstrap_preprocess_paragraph__timeline(&$variables) {
 function convivial_bootstrap_preprocess_paragraph__geochart(&$variables) {
   require_once __DIR__ . '/includes/geochart.inc';
   _convivial_bootstrap_geochart($variables);
+}
+
+/**
+ * Implements template_preprocess_paragraph__decision_tree().
+ */
+function convivial_bootstrap_preprocess_paragraph__decision_tree(&$variables) {
+  $variables['#attached']['library'][] = 'convivial_bootstrap/decision_tree_library';
 }
 
 /**
