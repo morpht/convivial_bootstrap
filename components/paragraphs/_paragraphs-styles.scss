@@ -189,8 +189,9 @@
 
   // Hide heading but keep available for screen readers.
   &.hide-heading {
-    .containerised {
-      > h2 {
+    > .containerised {
+      > h2,
+      > .paragraph__content > h2 {
         position: absolute !important;
         clip: rect(1px, 1px, 1px, 1px);
         overflow: hidden;
