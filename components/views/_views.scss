@@ -60,9 +60,6 @@
     &:not(:first-child) {
       margin-top: $grid-gutter-width;
     }
-    &:last-child {
-      margin-bottom: $grid-gutter-width;
-    }
   }
 }
 
@@ -148,6 +145,11 @@
 ///
 .views-layout--equal .views-layout__item {
 
+  /* one item */
+  &:only-of-type {
+    width: 100%;
+  }
+
   /* two items */
   &:nth-of-type(1):nth-last-of-type(2),
   &:nth-of-type(1):nth-last-of-type(2) ~ .views-layout__item {
@@ -191,10 +193,18 @@
   /* six items */
   @include media-breakpoint-up(md) {
     width: calc(100 / 3 * 1%);
+
+    &:nth-child(-n+3) {
+      margin-top: 0 !important;
+    }
   }
 
   @include media-breakpoint-up(lg) {
     width: calc(100 / 6 * 1%);
+
+    &:nth-child(-n+6) {
+      margin-top: 0 !important;
+    }
   }
 }
 
