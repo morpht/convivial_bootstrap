@@ -1,3 +1,23 @@
+{# Prepare footer_information attributes. #}
+{% set footer_information_attributes = create_attribute() %}
+
+{# Add footer information classes. #}
+{%
+  set footer_information_classes = [
+    'footer-information',
+    footer_information_style ? footer_information_style,
+  ]
+%}
+{% if page.footer_information %}
+  <section{{ footer_information_attributes.addClass(footer_information_classes) }}>
+    <div class="container">
+      <div class="footer__information">
+        {{ page.footer_information }}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
 {# Prepare footer attributes. #}
 {% set postscript_attributes = create_attribute() %}
 
