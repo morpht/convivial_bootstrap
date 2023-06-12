@@ -231,6 +231,20 @@ Note that if <strong>Display: Inline menu</strong> is set, the menu type will be
     '#default_value' => theme_get_setting('footer_style'),
   ];
 
+  $form['footer']['footer_information_style'] = [
+    '#type' => 'select',
+    '#title' => t('Footer information style'),
+    '#options' => [
+      '' => t('-none-'),
+      'theme__footer_information--light' => t('Light'),
+      'theme__footer_information--dark' => t('Dark'),
+      'theme__footer_information--primary' => t('Primary'),
+      'theme__footer_information--primary-dark' => t('Primary dark'),
+    ],
+    '#description' => t('Set style for footer information.'),
+    '#default_value' => theme_get_setting('footer_information_style'),
+  ];
+
   $form['page']['header_section'] = [
     '#type' => 'details',
     '#title' => t('Header section'),

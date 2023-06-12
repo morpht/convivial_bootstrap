@@ -132,6 +132,12 @@ function convivial_bootstrap_preprocess_page(&$variables) {
       'theme__footer--primary' => 'bg-primary',
       'theme__footer--primary-dark' => 'bg-primary-dark',
     ],
+    'footer_information_style' => [
+      'theme__footer_information--light' => 'bg-light',
+      'theme__footer_information--dark' => 'bg-dark',
+      'theme__footer_information--primary' => 'bg-primary',
+      'theme__footer_information--primary-dark' => 'bg-primary-dark',
+    ],
     'theme__highlighted_layouts' => [
       1 => 'highlighted-layouts',
     ],
