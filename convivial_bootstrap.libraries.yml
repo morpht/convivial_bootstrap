@@ -1,4 +1,4 @@
-base-global-styling:
+global-styling:
   css:
     component:
       css/style.css: { }
