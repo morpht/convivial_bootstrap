@@ -21,6 +21,14 @@ props:
       type: array
     content:
       type: object
+    fastfacts_heading:
+      type: string
+    fastfacts_prefix:
+      type: string
+    fastfacts_suffix:
+      type: string
+    fastfacts_value:
+      type: number
 
 
 # Slots always hold arbitrary markup. We know that beforehand, so no need for

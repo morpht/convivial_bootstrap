@@ -6,17 +6,14 @@
   ]
 %}
 
-{% embed 'convivial_bootstrap:fastfacts' with {
+{{ include ('convivial_bootstrap:fastfacts', {
   attributes,
   classes,
   content,
-} %}
-
-  {% block fastfact_content %}
-    {{ content.field_fastfact_prefix }}{{ content.field_fastfact_value }}{{ content.field_fastfact_suffix }}
-    {{ content.field_heading }}
-  {% endblock %}
-
-{% endembed %}
+  fastfact_prefix : content.field_fastfact_prefix.0,
+  fastfact_value : content.field_fastfact_value.0,
+  fastfact_suffix : content.field_fastfact_suffix.0,
+  fastfact_heading : content.field_heading.0
+}) }}
 
 
