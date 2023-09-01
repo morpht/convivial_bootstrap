@@ -30,15 +30,6 @@ props:
     fastfacts_value:
       type: number
 
-
-# Slots always hold arbitrary markup. We know that beforehand, so no need for
-# a schema for slots.
-slots:
-
-  # Only the key is required when declaring slots. This is how you declare a
-  # slot with minimal typing.
-  fastfact_content: {}
-
 # This is how you take control of the keys in your library
 # declaration. The overrides specified here will be merged (shallow merge) with
 # the auto-generated library. The result of the merge will become the library
