@@ -294,24 +294,26 @@ function convivial_bootstrap_preprocess_layout(&$variables) {
         $block = &$variables['content']['title'][$name];
 
         // Check if item is linked to some URL.
-        if (array_key_exists('content', $block) && array_key_exists('#field_name', $block['content'][0])) {
-          if ($block['content'][0]['#field_name'] === 'field_heading') {
-            $item = NULL;
-            // Only if URL field is available.
-            if ($entity->id() !== NULL && $entity->hasField('field_item_url')) {
-              $item = $entity->get('field_item_url')->first();
+        if (array_key_exists('content', $block) && isset($block['content'][0])) {
+          if (array_key_exists('#field_name', $block['content'][0])) {
+            if ($block['content'][0]['#field_name'] === 'field_heading') {
+              $item = NULL;
+              // Only if URL field is available.
+              if ($entity->id() !== NULL && $entity->hasField('field_item_url')) {
+                $item = $entity->get('field_item_url')->first();
+              }
+              if (!empty($item)) {
+                $block['content'][0]['#item_url'] = $item->getUrl();
+                $clickable = TRUE;
+              }
             }
-            if (!empty($item)) {
-              $block['content'][0]['#item_url'] = $item->getUrl();
+
+            // Check if node title is linked to entity.
+            elseif ($block['content'][0]['#field_name'] === 'title'
+              && !empty($block['#configuration']['formatter']['settings']['link_to_entity'])
+            ) {
               $clickable = TRUE;
             }
-          }
-
-          // Check if node title is linked to entity.
-          elseif ($block['content'][0]['#field_name'] === 'title'
-            && !empty($block['#configuration']['formatter']['settings']['link_to_entity'])
-          ) {
-            $clickable = TRUE;
           }
         }
       }
