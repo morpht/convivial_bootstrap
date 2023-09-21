@@ -11,6 +11,15 @@
     background-color: rgba(0, 0, 0, 0.1);
   }
 
+  &__container {
+    @include make-container();
+    @include container-max-widths();
+  }
+
+  &__wrapper {
+    @include make-row();
+  }
+
   &__content {
     @extend .col-md-7;
     @extend .col-xl-6;
