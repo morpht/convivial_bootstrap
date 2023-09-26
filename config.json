@@ -45,6 +45,7 @@
       "./node_modules/jquery-ui-dist/*.js",
       "./node_modules/leaflet/dist/**/*",
       "./node_modules/object-fit-images/dist/*",
+      "./node_modules/@popperjs/core/dist/umd/*",
       "./node_modules/slick-carousel/slick/**/*",
       "./node_modules/smooth-scroll/dist/*",
       "./node_modules/van11y-accessible-tab-panel-aria/dist/*"

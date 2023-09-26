@@ -41,23 +41,39 @@
     {% if menu_level == 0 %}
       <ul{{ attributes|without('region').addClass('nav nav-pills flex-column mb-auto') }}>
     {% else %}
-      <ul{{ attributes|without('region').addClass('nested-nav') }}>
+      <ul{{ attributes|without('region').addClass('nested-nav dropdown-menu') }}>
     {% endif %}
     {% set linkclass = 'nav-link' %}
     {% for item in items %}
       {%
         set classes = [
           'nav-item',
+          item.in_active_trail ? 'is-active',
+          item.is_expanded ? 'btn-group',
         ]
       %}
       <li{{ item.attributes.addClass(classes) }}>
-        {% if item.in_active_trail %}
-          <a href="{{ item.url }}" class="{{ linkclass }} active" aria-current="page">{{ item.title }}</a>
+        {% if item.is_expanded %}
+          {% if item.in_active_trail %}
+            <a href="{{ item.url }}" class="{{ linkclass }} active" aria-current="page">{{ item.title }}</a>
+            <a href="#" class="dropdown-toggle dropdown-toggle-split show" data-bs-toggle="dropdown" aria-expanded="true">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </a>
+          {% else %}
+            <a href="{{ item.url }}" class="{{ linkclass }}">{{ item.title }}</a>
+            <a href="#" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </a>
+          {% endif %}
         {% else %}
-          <a href="{{ item.url }}" class="{{ linkclass }}">{{ item.title }}</a>
+          <a href="{{ item.url }}" class="{{ linkclass }}{% if item.in_active_trail %} active{% endif %}" {% if item.in_active_trail %}aria-current="page"{% endif %}>{{ item.title }}</a>
         {% endif %}
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          {% if item.in_active_trail %}
+            {{ menus.menu_links(item.below, attributes.addClass('show'), menu_level + 1) }}
+          {% else %}
+            {{ menus.menu_links(item.below, attributes.removeClass('show'), menu_level + 1) }}
+          {% endif %}
         {% endif %}
       </li>
     {% endfor %}
