@@ -41,6 +41,7 @@ base-bootstrap5-js:
     - core/jquery
     - core/once
     - core/drupal
+    - convivial_bootstrap/popperjs
 
 billboard:
   remote: https://github.com/naver/billboard.js
@@ -204,6 +205,10 @@ object-fit-images-apply:
     components/slideshow/ofi.js: { }
   dependencies:
     - convivial_bootstrap/object-fit-images
+
+popperjs:
+  js:
+    libraries/@popperjs/core/dist/umd/popper.min.js: { minified: true }
 
 read-speaker:
   header: true

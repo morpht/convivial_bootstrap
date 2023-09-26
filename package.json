@@ -13,6 +13,7 @@
     "stylelint-fix": "stylelint 'components/**/*.scss' --fix"
   },
   "devDependencies": {
+    "@popperjs/core": "^2.11.8",
     "accessible-mega-menu": "github:adobe-accessibility/Accessible-Mega-Menu#master",
     "anchorific": "github:renettarenula/anchorific.js#master",
     "autoprefixer": "^9.5.0",

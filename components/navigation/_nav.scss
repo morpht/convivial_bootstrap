@@ -3,3 +3,54 @@
 .nested-nav {
   list-style: none;
 }
+
+// Sidebar nav.
+.layout__region--sidebar {
+  .nav {
+    .btn-group {
+      flex-wrap: wrap;
+
+      > a:first-child {
+        background-color: $link-color;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        color: var(--bs-nav-pills-link-active-color);
+        flex-grow: 1;
+      }
+
+      .dropdown-toggle {
+        position: relative;
+        background-color: $link-color;
+        width: 1.75rem;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+
+        &::after {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          border-bottom-color: var(--bs-nav-pills-link-active-color);
+          border-top-color: var(--bs-nav-pills-link-active-color);
+        }
+      }
+
+      .nested-nav {
+        position: relative !important; // Override JS inline style.
+        background-color: transparent;
+        border: unset;
+        padding-left: 2rem;
+        transform: unset !important; // Override JS inline style.
+      }
+
+      + .is-active {
+        margin-top: .5rem;
+      }
+    }
+
+    .is-active + .btn-group {
+      margin-top: .5rem;
+    }
+  }
+}
