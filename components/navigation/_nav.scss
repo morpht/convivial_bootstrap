@@ -7,6 +7,10 @@
 // Sidebar nav.
 .layout__region--sidebar {
   .nav {
+    .nav-link.active {
+      color: var(--standard-dark);
+    }
+
     .btn-group {
       flex-wrap: wrap;
 
@@ -16,8 +20,19 @@
         border-bottom-left-radius: $border-radius;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        color: var(--bs-nav-pills-link-active-color);
+        color: var(--standard-light);
         flex-grow: 1;
+
+        &:hover,
+        &:focus {
+          background-color: var(--standard-dark);
+          color: var(--standard-light);
+        }
+
+        &.active {
+          background-color: var(--standard-dark);
+          color: var(--standard-light);
+        }
       }
 
       .dropdown-toggle {
@@ -31,9 +46,23 @@
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          border-bottom-color: var(--bs-nav-pills-link-active-color);
-          border-top-color: var(--bs-nav-pills-link-active-color);
+          border-bottom-color: var(--standard-light);
+          border-top-color: var(--standard-light);
         }
+
+        &:hover,
+        &:focus {
+          background-color: var(--standard-dark);
+          color: var(--standard-light);
+
+          &::after {
+            background-color: var(--standard-dark);
+          }
+        }
+      }
+
+      a.active + .dropdown-toggle {
+        background-color: var(--standard-dark);
       }
 
       .nested-nav {

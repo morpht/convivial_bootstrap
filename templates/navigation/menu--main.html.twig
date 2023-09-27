@@ -39,7 +39,7 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes|without('region').addClass('nav nav-pills flex-column mb-auto') }}>
+      <ul{{ attributes|without('region').addClass('nav flex-column mb-auto') }}>
     {% else %}
       <ul{{ attributes|without('region').addClass('nested-nav dropdown-menu') }}>
     {% endif %}
