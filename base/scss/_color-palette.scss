@@ -35,8 +35,12 @@
   // Reset side padding for edgy layouts.
   .layout--content-edgy &,
   .edgy:not(.edgy--contained) & {
-    padding-left: 0;
-    padding-right: 0;
+
+    // Only on desktop.
+    @include media-breakpoint-up(md) {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 
