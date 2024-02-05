@@ -42,7 +42,8 @@
 
   // Reset side padding and margin for edgy layouts.
   .layout--content-edgy &,
-  .edgy:not(.edgy--contained) & {
+  .edgy:not(.edgy--contained) &,
+  &.layout--header-section {
     margin-top: 0;
     margin-bottom: 0;
 
