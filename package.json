@@ -53,7 +53,5 @@
     "not dead",
     "ie >= 9"
   ],
-  "dependencies": {
-    "jquery-ui-dist": "^1.13.1"
-  }
+  "dependencies": {}
 }

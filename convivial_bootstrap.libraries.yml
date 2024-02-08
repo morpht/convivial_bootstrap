@@ -144,13 +144,6 @@ lightbox:
     - core/drupal
     - convivial_bootstrap/glightbox
 
-jquery_ui:
-  css:
-    theme:
-      libraries/jquery-ui-dist/jquery-ui.theme.min.css: { minified: true }
-  js:
-    libraries/jquery-ui-dist/jquery-ui.min.js: { minified: true }
-
 leaflet:
   version: 1.3.4
   css:

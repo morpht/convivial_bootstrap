@@ -8,7 +8,6 @@ libraries:
   - convivial_bootstrap/back-to-top
   - convivial_bootstrap/font-family
   - convivial_bootstrap/header
-  - convivial_bootstrap/jquery_ui
   - convivial_bootstrap/scroll_anchor
   - convivial_bootstrap/search
   - convivial_bootstrap/search_autocomplete
