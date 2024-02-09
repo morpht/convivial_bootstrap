@@ -5,18 +5,18 @@
  * billboard.js, JavaScript chart library
  * https://naver.github.io/billboard.js/
  * 
- * @version 1.12.11
+ * @version 1.12.12
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("d3-time-format"), require("d3-selection"), require("d3-transition"), require("d3-axis"), require("d3-scale"), require("d3-brush"), require("d3-dsv"), require("d3-drag"), require("d3-shape"), require("d3-interpolate"), require("d3-color"), require("d3-zoom"), require("d3-ease"));
+		module.exports = factory(require("d3-time-format"), require("d3-selection"), require("d3-transition"), require("d3-axis"), require("d3-scale"), require("d3-brush"), require("d3-dsv"), require("d3-drag"), require("d3-shape"), require("d3-interpolate"), require("d3-zoom"), require("d3-ease"));
 	else if(typeof define === 'function' && define.amd)
-		define(["d3-time-format", "d3-selection", "d3-transition", "d3-axis", "d3-scale", "d3-brush", "d3-dsv", "d3-drag", "d3-shape", "d3-interpolate", "d3-color", "d3-zoom", "d3-ease"], factory);
+		define(["d3-time-format", "d3-selection", "d3-transition", "d3-axis", "d3-scale", "d3-brush", "d3-dsv", "d3-drag", "d3-shape", "d3-interpolate", "d3-zoom", "d3-ease"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("d3-time-format"), require("d3-selection"), require("d3-transition"), require("d3-axis"), require("d3-scale"), require("d3-brush"), require("d3-dsv"), require("d3-drag"), require("d3-shape"), require("d3-interpolate"), require("d3-color"), require("d3-zoom"), require("d3-ease")) : factory(root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"]);
+		var a = typeof exports === 'object' ? factory(require("d3-time-format"), require("d3-selection"), require("d3-transition"), require("d3-axis"), require("d3-scale"), require("d3-brush"), require("d3-dsv"), require("d3-drag"), require("d3-shape"), require("d3-interpolate"), require("d3-zoom"), require("d3-ease")) : factory(root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"], root["d3"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__7__, __WEBPACK_EXTERNAL_MODULE__8__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -108,7 +108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(14);
 
 
 /***/ }),
@@ -191,12 +191,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__13__;
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__14__;
-
-/***/ }),
-/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11922,15 +11916,11 @@ extend(ChartInternal_ChartInternal.prototype, {
     this.dragging = isDragging;
   }
 });
-// EXTERNAL MODULE: external {"commonjs":"d3-color","commonjs2":"d3-color","amd":"d3-color","root":"d3"}
-var external_commonjs_d3_color_commonjs2_d3_color_amd_d3_color_root_d3_ = __webpack_require__(12);
-
 // CONCATENATED MODULE: ./src/internals/selection.js
 /**
  * Copyright (c) 2017 ~ present NAVER Corp.
  * billboard.js project is licensed under the MIT license
  */
-
 
 
 
@@ -11993,9 +11983,7 @@ extend(ChartInternal_ChartInternal.prototype, {
   selectPath: function selectPath(target, d) {
     var $$ = this,
         config = $$.config;
-    callFn(config.data_onselected, $$, d, target.node()), config.interaction_brighten && target.transition().duration(100).style("fill", function () {
-      return Object(external_commonjs_d3_color_commonjs2_d3_color_amd_d3_color_root_d3_["rgb"])($$.color(d)).brighter(.75);
-    });
+    callFn(config.data_onselected, $$, d, target.node()), config.interaction_brighten && target.style("filter", "brightness(1.25)");
   },
 
   /**
@@ -12310,7 +12298,7 @@ extend(ChartInternal_ChartInternal.prototype, {
   }
 });
 // EXTERNAL MODULE: external {"commonjs":"d3-zoom","commonjs2":"d3-zoom","amd":"d3-zoom","root":"d3"}
-var external_commonjs_d3_zoom_commonjs2_d3_zoom_amd_d3_zoom_root_d3_ = __webpack_require__(13);
+var external_commonjs_d3_zoom_commonjs2_d3_zoom_amd_d3_zoom_root_d3_ = __webpack_require__(12);
 
 // CONCATENATED MODULE: ./src/interactions/zoom.js
 
@@ -13424,7 +13412,7 @@ extend(Chart_Chart.prototype, {
   }
 });
 // EXTERNAL MODULE: external {"commonjs":"d3-ease","commonjs2":"d3-ease","amd":"d3-ease","root":"d3"}
-var external_commonjs_d3_ease_commonjs2_d3_ease_amd_d3_ease_root_d3_ = __webpack_require__(14);
+var external_commonjs_d3_ease_commonjs2_d3_ease_amd_d3_ease_root_d3_ = __webpack_require__(13);
 
 // CONCATENATED MODULE: ./src/api/api.flow.js
 /**
@@ -14945,7 +14933,7 @@ var _defaults = {},
    *    bb.version;  // "1.0.0"
    * @memberof bb
    */
-  version: "1.12.11",
+  version: "1.12.12",
 
   /**
    * Generate chart
@@ -15044,7 +15032,7 @@ var _defaults = {},
 };
 /**
  * @namespace bb
- * @version 1.12.11
+ * @version 1.12.12
  */
 
 

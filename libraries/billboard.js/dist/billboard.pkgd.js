@@ -5,12 +5,11 @@
  * billboard.js, JavaScript chart library
  * https://naver.github.io/billboard.js/
  * 
- * @version 1.12.11
+ * @version 1.12.12
  * 
  * All-in-one packaged file for ease use of 'billboard.js' with dependant d3.js modules & polyfills.
  * - d3-axis ^1.0.12
  * - d3-brush ^1.1.5
- * - d3-color ^1.4.0
  * - d3-drag ^1.2.5
  * - d3-dsv ^1.2.0
  * - d3-ease ^1.0.6
@@ -1208,7 +1207,7 @@ var store = __webpack_require__(26);
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.6.4',
+  version: '3.6.5',
   mode: IS_PURE ? 'pure' : 'global',
   copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
 });
@@ -8150,7 +8149,13 @@ if (!set || !clear) {
     defer = bind(port.postMessage, port, 1);
   // Browsers with postMessage, skip WebWorkers
   // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
-  } else if (global.addEventListener && typeof postMessage == 'function' && !global.importScripts && !fails(post)) {
+  } else if (
+    global.addEventListener &&
+    typeof postMessage == 'function' &&
+    !global.importScripts &&
+    !fails(post) &&
+    location.protocol !== 'file:'
+  ) {
     defer = post;
     global.addEventListener('message', listener, false);
   // IE8-
@@ -11232,7 +11237,7 @@ var INVALID_HOST = 'Invalid host';
 var INVALID_PORT = 'Invalid port';
 
 var ALPHA = /[A-Za-z]/;
-var ALPHANUMERIC = /[\d+\-.A-Za-z]/;
+var ALPHANUMERIC = /[\d+-.A-Za-z]/;
 var DIGIT = /\d/;
 var HEX_START = /^(0x|0X)/;
 var OCT = /^[0-7]+$/;
@@ -15431,7 +15436,7 @@ var noop = {
 
 function dispatch_dispatch() {
   for (var t, i = 0, n = arguments.length, _ = {}; i < n; ++i) {
-    if (!(t = arguments[i] + "") || t in _) throw new Error("illegal type: " + t);
+    if (!(t = arguments[i] + "") || t in _ || /[\s.]/.test(t)) throw new Error("illegal type: " + t);
     _[t] = [];
   }
 
@@ -15765,7 +15770,7 @@ function schedule_create(node, id, self) {
     interrupt(this, name);
   });
 });
-// CONCATENATED MODULE: ./node_modules/d3-color/src/define.js
+// CONCATENATED MODULE: ./node_modules/d3-interpolate/node_modules/d3-color/src/define.js
 /* harmony default export */ var define = (function (constructor, factory, prototype) {
   constructor.prototype = factory.prototype = prototype, prototype.constructor = constructor;
 });
@@ -15776,7 +15781,7 @@ function extend(parent, definition) {
 
   return prototype;
 }
-// CONCATENATED MODULE: ./node_modules/d3-color/src/color.js
+// CONCATENATED MODULE: ./node_modules/d3-interpolate/node_modules/d3-color/src/color.js
 
 function Color() {}
 var _darker = .7;
@@ -15976,8 +15981,8 @@ function color_color(format) {
   var m, l;
   return format = (format + "").trim().toLowerCase(), (m = reHex.exec(format)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) // #ff0000
   : l === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) // #f00
-  : l === 8 ? new Rgb(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) // #ff000000
-  : l === 4 ? new Rgb(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) // #f000
+  : l === 8 ? rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) // #ff000000
+  : l === 4 ? rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) // #f000
   : null // invalid hex
   ) : (m = reRgbInteger.exec(format)) ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
   : (m = reRgbPercent.exec(format)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) // rgb(100%, 0%, 0%)
@@ -16094,10 +16099,10 @@ define(Hsl, hsl, extend(Color, {
 function hsl2rgb(h, m1, m2) {
   return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
 }
-// CONCATENATED MODULE: ./node_modules/d3-color/src/math.js
+// CONCATENATED MODULE: ./node_modules/d3-interpolate/node_modules/d3-color/src/math.js
 var deg2rad = Math.PI / 180;
 var rad2deg = 180 / Math.PI;
-// CONCATENATED MODULE: ./node_modules/d3-color/src/lab.js
+// CONCATENATED MODULE: ./node_modules/d3-interpolate/node_modules/d3-color/src/lab.js
 
 
  // https://observablehq.com/@mbostock/lab-and-rgb
@@ -16198,7 +16203,7 @@ define(Hcl, hcl, extend(Color, {
     return hcl2lab(this).rgb();
   }
 }));
-// CONCATENATED MODULE: ./node_modules/d3-color/src/cubehelix.js
+// CONCATENATED MODULE: ./node_modules/d3-interpolate/node_modules/d3-color/src/cubehelix.js
 
 
 
@@ -16248,7 +16253,7 @@ define(Cubehelix, cubehelix_cubehelix, extend(Color, {
     return new Rgb(255 * (l + a * (A * cosh + B * sinh)), 255 * (l + a * (C * cosh + cubehelix_D * sinh)), 255 * (l + a * (cubehelix_E * cosh)), this.opacity);
   }
 }));
-// CONCATENATED MODULE: ./node_modules/d3-color/src/index.js
+// CONCATENATED MODULE: ./node_modules/d3-interpolate/node_modules/d3-color/src/index.js
 
 
 
@@ -16836,12 +16841,499 @@ function tweenValue(transition, name, value) {
     return schedule_get(node, id).value[name];
   };
 }
+// CONCATENATED MODULE: ./node_modules/d3-transition/node_modules/d3-color/src/define.js
+/* harmony default export */ var src_define = (function (constructor, factory, prototype) {
+  constructor.prototype = factory.prototype = prototype, prototype.constructor = constructor;
+});
+function define_extend(parent, definition) {
+  var prototype = Object.create(parent.prototype);
+
+  for (var key in definition) prototype[key] = definition[key];
+
+  return prototype;
+}
+// CONCATENATED MODULE: ./node_modules/d3-transition/node_modules/d3-color/src/color.js
+
+function color_Color() {}
+var color_darker = .7;
+
+
+var color_brighter = 1 / color_darker;
+
+
+var color_reI = "\\s*([+-]?\\d+)\\s*",
+    color_reN = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*",
+    color_reP = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*",
+    color_reHex = /^#([0-9a-f]{3,8})$/,
+    color_reRgbInteger = new RegExp("^rgb\\(\\s*([+-]?\\d+)\\s*,\\s*([+-]?\\d+)\\s*,\\s*([+-]?\\d+)\\s*\\)$"),
+    color_reRgbPercent = new RegExp("^rgb\\(\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*\\)$"),
+    color_reRgbaInteger = new RegExp("^rgba\\(\\s*([+-]?\\d+)\\s*,\\s*([+-]?\\d+)\\s*,\\s*([+-]?\\d+)\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*\\)$"),
+    color_reRgbaPercent = new RegExp("^rgba\\(\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*\\)$"),
+    color_reHslPercent = new RegExp("^hsl\\(\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*\\)$"),
+    color_reHslaPercent = new RegExp("^hsla\\(\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*,\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*\\)$"),
+    color_named = {
+  aliceblue: 0xf0f8ff,
+  antiquewhite: 0xfaebd7,
+  aqua: 65535,
+  aquamarine: 8388564,
+  azure: 0xf0ffff,
+  beige: 0xf5f5dc,
+  bisque: 0xffe4c4,
+  black: 0,
+  blanchedalmond: 0xffebcd,
+  blue: 255,
+  blueviolet: 9055202,
+  brown: 0xa52a2a,
+  burlywood: 0xdeb887,
+  cadetblue: 6266528,
+  chartreuse: 8388352,
+  chocolate: 0xd2691e,
+  coral: 0xff7f50,
+  cornflowerblue: 6591981,
+  cornsilk: 0xfff8dc,
+  crimson: 0xdc143c,
+  cyan: 65535,
+  darkblue: 139,
+  darkcyan: 35723,
+  darkgoldenrod: 0xb8860b,
+  darkgray: 0xa9a9a9,
+  darkgreen: 25600,
+  darkgrey: 0xa9a9a9,
+  darkkhaki: 0xbdb76b,
+  darkmagenta: 9109643,
+  darkolivegreen: 5597999,
+  darkorange: 0xff8c00,
+  darkorchid: 0x9932cc,
+  darkred: 9109504,
+  darksalmon: 0xe9967a,
+  darkseagreen: 9419919,
+  darkslateblue: 4734347,
+  darkslategray: 3100495,
+  darkslategrey: 3100495,
+  darkturquoise: 52945,
+  darkviolet: 9699539,
+  deeppink: 0xff1493,
+  deepskyblue: 49151,
+  dimgray: 6908265,
+  dimgrey: 6908265,
+  dodgerblue: 2003199,
+  firebrick: 0xb22222,
+  floralwhite: 0xfffaf0,
+  forestgreen: 2263842,
+  fuchsia: 0xff00ff,
+  gainsboro: 0xdcdcdc,
+  ghostwhite: 0xf8f8ff,
+  gold: 0xffd700,
+  goldenrod: 0xdaa520,
+  gray: 8421504,
+  green: 32768,
+  greenyellow: 0xadff2f,
+  grey: 8421504,
+  honeydew: 0xf0fff0,
+  hotpink: 0xff69b4,
+  indianred: 0xcd5c5c,
+  indigo: 4915330,
+  ivory: 0xfffff0,
+  khaki: 0xf0e68c,
+  lavender: 0xe6e6fa,
+  lavenderblush: 0xfff0f5,
+  lawngreen: 8190976,
+  lemonchiffon: 0xfffacd,
+  lightblue: 0xadd8e6,
+  lightcoral: 0xf08080,
+  lightcyan: 0xe0ffff,
+  lightgoldenrodyellow: 0xfafad2,
+  lightgray: 0xd3d3d3,
+  lightgreen: 9498256,
+  lightgrey: 0xd3d3d3,
+  lightpink: 0xffb6c1,
+  lightsalmon: 0xffa07a,
+  lightseagreen: 2142890,
+  lightskyblue: 8900346,
+  lightslategray: 7833753,
+  lightslategrey: 7833753,
+  lightsteelblue: 0xb0c4de,
+  lightyellow: 0xffffe0,
+  lime: 65280,
+  limegreen: 3329330,
+  linen: 0xfaf0e6,
+  magenta: 0xff00ff,
+  maroon: 8388608,
+  mediumaquamarine: 6737322,
+  mediumblue: 205,
+  mediumorchid: 0xba55d3,
+  mediumpurple: 9662683,
+  mediumseagreen: 3978097,
+  mediumslateblue: 8087790,
+  mediumspringgreen: 64154,
+  mediumturquoise: 4772300,
+  mediumvioletred: 0xc71585,
+  midnightblue: 1644912,
+  mintcream: 0xf5fffa,
+  mistyrose: 0xffe4e1,
+  moccasin: 0xffe4b5,
+  navajowhite: 0xffdead,
+  navy: 128,
+  oldlace: 0xfdf5e6,
+  olive: 8421376,
+  olivedrab: 7048739,
+  orange: 0xffa500,
+  orangered: 0xff4500,
+  orchid: 0xda70d6,
+  palegoldenrod: 0xeee8aa,
+  palegreen: 0x98fb98,
+  paleturquoise: 0xafeeee,
+  palevioletred: 0xdb7093,
+  papayawhip: 0xffefd5,
+  peachpuff: 0xffdab9,
+  peru: 0xcd853f,
+  pink: 0xffc0cb,
+  plum: 0xdda0dd,
+  powderblue: 0xb0e0e6,
+  purple: 8388736,
+  rebeccapurple: 6697881,
+  red: 0xff0000,
+  rosybrown: 0xbc8f8f,
+  royalblue: 4286945,
+  saddlebrown: 9127187,
+  salmon: 0xfa8072,
+  sandybrown: 0xf4a460,
+  seagreen: 3050327,
+  seashell: 0xfff5ee,
+  sienna: 0xa0522d,
+  silver: 0xc0c0c0,
+  skyblue: 8900331,
+  slateblue: 6970061,
+  slategray: 7372944,
+  slategrey: 7372944,
+  snow: 0xfffafa,
+  springgreen: 65407,
+  steelblue: 4620980,
+  tan: 0xd2b48c,
+  teal: 32896,
+  thistle: 0xd8bfd8,
+  tomato: 0xff6347,
+  turquoise: 4251856,
+  violet: 0xee82ee,
+  wheat: 0xf5deb3,
+  white: 0xffffff,
+  whitesmoke: 0xf5f5f5,
+  yellow: 0xffff00,
+  yellowgreen: 0x9acd32
+};
+src_define(color_Color, src_color_color, {
+  copy: function copy(channels) {
+    return Object.assign(new this.constructor(), this, channels);
+  },
+  displayable: function displayable() {
+    return this.rgb().displayable();
+  },
+  hex: color_color_formatHex,
+  // Deprecated! Use color.formatHex.
+  formatHex: color_color_formatHex,
+  formatHsl: color_color_formatHsl,
+  formatRgb: color_color_formatRgb,
+  toString: color_color_formatRgb
+});
+
+function color_color_formatHex() {
+  return this.rgb().formatHex();
+}
+
+function color_color_formatHsl() {
+  return color_hslConvert(this).formatHsl();
+}
+
+function color_color_formatRgb() {
+  return this.rgb().formatRgb();
+}
+
+function src_color_color(format) {
+  var m, l;
+  return format = (format + "").trim().toLowerCase(), (m = color_reHex.exec(format)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? color_rgbn(m) // #ff0000
+  : l === 3 ? new color_Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) // #f00
+  : l === 8 ? color_rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) // #ff000000
+  : l === 4 ? color_rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) // #f000
+  : null // invalid hex
+  ) : (m = color_reRgbInteger.exec(format)) ? new color_Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
+  : (m = color_reRgbPercent.exec(format)) ? new color_Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) // rgb(100%, 0%, 0%)
+  : (m = color_reRgbaInteger.exec(format)) ? color_rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
+  : (m = color_reRgbaPercent.exec(format)) ? color_rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) // rgb(100%, 0%, 0%, 1)
+  : (m = color_reHslPercent.exec(format)) ? color_hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
+  : (m = color_reHslaPercent.exec(format)) ? color_hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
+  : color_named.hasOwnProperty(format) ? color_rgbn(color_named[format]) // eslint-disable-line no-prototype-builtins
+  : format === "transparent" ? new color_Rgb(NaN, NaN, NaN, 0) : null;
+}
+
+function color_rgbn(n) {
+  return new color_Rgb(n >> 16 & 255, n >> 8 & 255, n & 255, 1);
+}
+
+function color_rgba(r, g, b, a) {
+  return a <= 0 && (r = g = b = NaN), new color_Rgb(r, g, b, a);
+}
+
+function color_rgbConvert(o) {
+  return (o instanceof color_Color || (o = src_color_color(o)), !o) ? new color_Rgb() : (o = o.rgb(), new color_Rgb(o.r, o.g, o.b, o.opacity));
+}
+function src_color_rgb(r, g, b, opacity) {
+  return arguments.length === 1 ? color_rgbConvert(r) : new color_Rgb(r, g, b, opacity == null ? 1 : opacity);
+}
+function color_Rgb(r, g, b, opacity) {
+  this.r = +r, this.g = +g, this.b = +b, this.opacity = +opacity;
+}
+src_define(color_Rgb, src_color_rgb, define_extend(color_Color, {
+  brighter: function brighter(k) {
+    return k = k == null ? color_brighter : Math.pow(color_brighter, k), new color_Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+  },
+  darker: function darker(k) {
+    return k = k == null ? color_darker : Math.pow(color_darker, k), new color_Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
+  },
+  rgb: function () {
+    return this;
+  },
+  displayable: function displayable() {
+    return -.5 <= this.r && this.r < 255.5 && -.5 <= this.g && this.g < 255.5 && -.5 <= this.b && this.b < 255.5 && 0 <= this.opacity && this.opacity <= 1;
+  },
+  hex: color_rgb_formatHex,
+  // Deprecated! Use color.formatHex.
+  formatHex: color_rgb_formatHex,
+  formatRgb: color_rgb_formatRgb,
+  toString: color_rgb_formatRgb
+}));
+
+function color_rgb_formatHex() {
+  return "#" + color_hex(this.r) + color_hex(this.g) + color_hex(this.b);
+}
+
+function color_rgb_formatRgb() {
+  var a = this.opacity;
+  return a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a)), (a === 1 ? "rgb(" : "rgba(") + Math.max(0, Math.min(255, Math.round(this.r) || 0)) + ", " + Math.max(0, Math.min(255, Math.round(this.g) || 0)) + ", " + Math.max(0, Math.min(255, Math.round(this.b) || 0)) + (a === 1 ? ")" : ", " + a + ")");
+}
+
+function color_hex(value) {
+  return value = Math.max(0, Math.min(255, Math.round(value) || 0)), (value < 16 ? "0" : "") + value.toString(16);
+}
+
+function color_hsla(h, s, l, a) {
+  return a <= 0 ? h = s = l = NaN : l <= 0 || l >= 1 ? h = s = NaN : s <= 0 && (h = NaN), new color_Hsl(h, s, l, a);
+}
+
+function color_hslConvert(o) {
+  if (o instanceof color_Hsl) return new color_Hsl(o.h, o.s, o.l, o.opacity);
+  if (o instanceof color_Color || (o = src_color_color(o)), !o) return new color_Hsl();
+  if (o instanceof color_Hsl) return o;
+  o = o.rgb();
+  var r = o.r / 255,
+      g = o.g / 255,
+      b = o.b / 255,
+      min = Math.min(r, g, b),
+      max = Math.max(r, g, b),
+      h = NaN,
+      s = max - min,
+      l = (max + min) / 2;
+  return s ? (h = r === max ? (g - b) / s + (g < b) * 6 : g === max ? (b - r) / s + 2 : (r - g) / s + 4, s /= l < .5 ? max + min : 2 - max - min, h *= 60) : s = l > 0 && l < 1 ? 0 : h, new color_Hsl(h, s, l, o.opacity);
+}
+function color_hsl(h, s, l, opacity) {
+  return arguments.length === 1 ? color_hslConvert(h) : new color_Hsl(h, s, l, opacity == null ? 1 : opacity);
+}
+
+function color_Hsl(h, s, l, opacity) {
+  this.h = +h, this.s = +s, this.l = +l, this.opacity = +opacity;
+}
+
+src_define(color_Hsl, color_hsl, define_extend(color_Color, {
+  brighter: function brighter(k) {
+    return k = k == null ? color_brighter : Math.pow(color_brighter, k), new color_Hsl(this.h, this.s, this.l * k, this.opacity);
+  },
+  darker: function darker(k) {
+    return k = k == null ? color_darker : Math.pow(color_darker, k), new color_Hsl(this.h, this.s, this.l * k, this.opacity);
+  },
+  rgb: function () {
+    var h = this.h % 360 + (this.h < 0) * 360,
+        s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
+        l = this.l,
+        m2 = l + (l < .5 ? l : 1 - l) * s,
+        m1 = 2 * l - m2;
+    return new color_Rgb(color_hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2), color_hsl2rgb(h, m1, m2), color_hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2), this.opacity);
+  },
+  displayable: function displayable() {
+    return (0 <= this.s && this.s <= 1 || isNaN(this.s)) && 0 <= this.l && this.l <= 1 && 0 <= this.opacity && this.opacity <= 1;
+  },
+  formatHsl: function formatHsl() {
+    var a = this.opacity;
+    return a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a)), (a === 1 ? "hsl(" : "hsla(") + (this.h || 0) + ", " + (this.s || 0) * 100 + "%, " + (this.l || 0) * 100 + "%" + (a === 1 ? ")" : ", " + a + ")");
+  }
+}));
+
+/* From FvD 13.37, CSS Color Module Level 3 */
+function color_hsl2rgb(h, m1, m2) {
+  return (h < 60 ? m1 + (m2 - m1) * h / 60 : h < 180 ? m2 : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60 : m1) * 255;
+}
+// CONCATENATED MODULE: ./node_modules/d3-transition/node_modules/d3-color/src/math.js
+var math_deg2rad = Math.PI / 180;
+var math_rad2deg = 180 / Math.PI;
+// CONCATENATED MODULE: ./node_modules/d3-transition/node_modules/d3-color/src/lab.js
+
+
+ // https://observablehq.com/@mbostock/lab-and-rgb
+
+var lab_K = 18,
+    lab_Xn = .96422,
+    lab_Yn = 1,
+    lab_Zn = .82521,
+    src_lab_t0 = 4 / 29,
+    src_lab_t1 = 6 / 29,
+    src_lab_t2 = 3 * src_lab_t1 * src_lab_t1,
+    lab_t3 = src_lab_t1 * src_lab_t1 * src_lab_t1;
+
+function lab_labConvert(o) {
+  if (o instanceof lab_Lab) return new lab_Lab(o.l, o.a, o.b, o.opacity);
+  if (o instanceof lab_Hcl) return lab_hcl2lab(o);
+  o instanceof color_Rgb || (o = color_rgbConvert(o));
+  var x,
+      z,
+      r = lab_rgb2lrgb(o.r),
+      g = lab_rgb2lrgb(o.g),
+      b = lab_rgb2lrgb(o.b),
+      y = lab_xyz2lab((.2225045 * r + .7168786 * g + .0606169 * b) / lab_Yn);
+  return r === g && g === b ? x = z = y : (x = lab_xyz2lab((.4360747 * r + .3850649 * g + .1430804 * b) / lab_Xn), z = lab_xyz2lab((.0139322 * r + .0971045 * g + .7141733 * b) / lab_Zn)), new lab_Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
+}
+
+function lab_gray(l, opacity) {
+  return new lab_Lab(l, 0, 0, opacity == null ? 1 : opacity);
+}
+function src_lab_lab(l, a, b, opacity) {
+  return arguments.length === 1 ? lab_labConvert(l) : new lab_Lab(l, a, b, opacity == null ? 1 : opacity);
+}
+function lab_Lab(l, a, b, opacity) {
+  this.l = +l, this.a = +a, this.b = +b, this.opacity = +opacity;
+}
+src_define(lab_Lab, src_lab_lab, define_extend(color_Color, {
+  brighter: function brighter(k) {
+    return new lab_Lab(this.l + lab_K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+  },
+  darker: function darker(k) {
+    return new lab_Lab(this.l - lab_K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+  },
+  rgb: function rgb() {
+    var y = (this.l + 16) / 116,
+        x = isNaN(this.a) ? y : y + this.a / 500,
+        z = isNaN(this.b) ? y : y - this.b / 200;
+    return x = lab_Xn * lab_lab2xyz(x), y = lab_Yn * lab_lab2xyz(y), z = lab_Zn * lab_lab2xyz(z), new color_Rgb(lab_lrgb2rgb(3.1338561 * x - 1.6168667 * y - .4906146 * z), lab_lrgb2rgb(-.9787684 * x + 1.9161415 * y + .033454 * z), lab_lrgb2rgb(.0719453 * x - .2289914 * y + 1.4052427 * z), this.opacity);
+  }
+}));
+
+function lab_xyz2lab(t) {
+  return t > lab_t3 ? Math.pow(t, 1 / 3) : t / src_lab_t2 + src_lab_t0;
+}
+
+function lab_lab2xyz(t) {
+  return t > src_lab_t1 ? t * t * t : src_lab_t2 * (t - src_lab_t0);
+}
+
+function lab_lrgb2rgb(x) {
+  return 255 * (x <= .0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - .055);
+}
+
+function lab_rgb2lrgb(x) {
+  return (x /= 255) <= .04045 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4);
+}
+
+function lab_hclConvert(o) {
+  if (o instanceof lab_Hcl) return new lab_Hcl(o.h, o.c, o.l, o.opacity);
+  if (o instanceof lab_Lab || (o = lab_labConvert(o)), o.a === 0 && o.b === 0) return new lab_Hcl(NaN, 0 < o.l && o.l < 100 ? 0 : NaN, o.l, o.opacity);
+  var h = Math.atan2(o.b, o.a) * math_rad2deg;
+  return new lab_Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
+}
+
+function lab_lch(l, c, h, opacity) {
+  return arguments.length === 1 ? lab_hclConvert(l) : new lab_Hcl(h, c, l, opacity == null ? 1 : opacity);
+}
+function lab_hcl(h, c, l, opacity) {
+  return arguments.length === 1 ? lab_hclConvert(h) : new lab_Hcl(h, c, l, opacity == null ? 1 : opacity);
+}
+function lab_Hcl(h, c, l, opacity) {
+  this.h = +h, this.c = +c, this.l = +l, this.opacity = +opacity;
+}
+
+function lab_hcl2lab(o) {
+  if (isNaN(o.h)) return new lab_Lab(o.l, 0, 0, o.opacity);
+  var h = o.h * math_deg2rad;
+  return new lab_Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
+}
+
+src_define(lab_Hcl, lab_hcl, define_extend(color_Color, {
+  brighter: function brighter(k) {
+    return new lab_Hcl(this.h, this.c, this.l + lab_K * (k == null ? 1 : k), this.opacity);
+  },
+  darker: function darker(k) {
+    return new lab_Hcl(this.h, this.c, this.l - lab_K * (k == null ? 1 : k), this.opacity);
+  },
+  rgb: function rgb() {
+    return lab_hcl2lab(this).rgb();
+  }
+}));
+// CONCATENATED MODULE: ./node_modules/d3-transition/node_modules/d3-color/src/cubehelix.js
+
+
+
+var cubehelix_A = -.14861,
+    cubehelix_B = +1.78277,
+    cubehelix_C = -.29227,
+    src_cubehelix_D = -.90649,
+    src_cubehelix_E = +1.97294,
+    cubehelix_ED = src_cubehelix_E * src_cubehelix_D,
+    cubehelix_EB = src_cubehelix_E * cubehelix_B,
+    cubehelix_BC_DA = cubehelix_B * cubehelix_C - src_cubehelix_D * cubehelix_A;
+
+function cubehelix_cubehelixConvert(o) {
+  if (o instanceof cubehelix_Cubehelix) return new cubehelix_Cubehelix(o.h, o.s, o.l, o.opacity);
+  o instanceof color_Rgb || (o = color_rgbConvert(o));
+  var r = o.r / 255,
+      g = o.g / 255,
+      b = o.b / 255,
+      l = (cubehelix_BC_DA * b + cubehelix_ED * r - cubehelix_EB * g) / (cubehelix_BC_DA + cubehelix_ED - cubehelix_EB),
+      bl = b - l,
+      k = (src_cubehelix_E * (g - l) - cubehelix_C * bl) / src_cubehelix_D,
+      s = Math.sqrt(k * k + bl * bl) / (src_cubehelix_E * l * (1 - l)),
+      // NaN if l=0 or l=1
+  h = s ? Math.atan2(k, bl) * math_rad2deg - 120 : NaN;
+  return new cubehelix_Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
+}
+
+function d3_color_src_cubehelix_cubehelix(h, s, l, opacity) {
+  return arguments.length === 1 ? cubehelix_cubehelixConvert(h) : new cubehelix_Cubehelix(h, s, l, opacity == null ? 1 : opacity);
+}
+function cubehelix_Cubehelix(h, s, l, opacity) {
+  this.h = +h, this.s = +s, this.l = +l, this.opacity = +opacity;
+}
+src_define(cubehelix_Cubehelix, d3_color_src_cubehelix_cubehelix, define_extend(color_Color, {
+  brighter: function brighter(k) {
+    return k = k == null ? color_brighter : Math.pow(color_brighter, k), new cubehelix_Cubehelix(this.h, this.s, this.l * k, this.opacity);
+  },
+  darker: function darker(k) {
+    return k = k == null ? color_darker : Math.pow(color_darker, k), new cubehelix_Cubehelix(this.h, this.s, this.l * k, this.opacity);
+  },
+  rgb: function rgb() {
+    var h = isNaN(this.h) ? 0 : (this.h + 120) * math_deg2rad,
+        l = +this.l,
+        a = isNaN(this.s) ? 0 : this.s * l * (1 - l),
+        cosh = Math.cos(h),
+        sinh = Math.sin(h);
+    return new color_Rgb(255 * (l + a * (cubehelix_A * cosh + cubehelix_B * sinh)), 255 * (l + a * (cubehelix_C * cosh + src_cubehelix_D * sinh)), 255 * (l + a * (src_cubehelix_E * cosh)), this.opacity);
+  }
+}));
+// CONCATENATED MODULE: ./node_modules/d3-transition/node_modules/d3-color/src/index.js
+
+
+
 // CONCATENATED MODULE: ./node_modules/d3-transition/src/transition/interpolate.js
 
 
 /* harmony default export */ var transition_interpolate = (function (a, b) {
   var c;
-  return (typeof b === "number" ? number : b instanceof color_color ? src_rgb : (c = color_color(b)) ? (b = c, src_rgb) : src_string)(a, b);
+  return (typeof b === "number" ? number : b instanceof src_color_color ? src_rgb : (c = src_color_color(b)) ? (b = c, src_rgb) : src_string)(a, b);
 });
 // CONCATENATED MODULE: ./node_modules/d3-transition/src/transition/attr.js
 
@@ -33636,7 +34128,6 @@ util_extend(ChartInternal_ChartInternal.prototype, {
 
 
 
-
 util_extend(ChartInternal_ChartInternal.prototype, {
   /**
    * Select a point
@@ -33695,9 +34186,7 @@ util_extend(ChartInternal_ChartInternal.prototype, {
   selectPath: function selectPath(target, d) {
     var $$ = this,
         config = $$.config;
-    callFn(config.data_onselected, $$, d, target.node()), config.interaction_brighten && target.transition().duration(100).style("fill", function () {
-      return color_rgb($$.color(d)).brighter(.75);
-    });
+    callFn(config.data_onselected, $$, d, target.node()), config.interaction_brighten && target.style("filter", "brightness(1.25)");
   },
 
   /**
@@ -37007,7 +37496,7 @@ var _defaults = {},
    *    bb.version;  // "1.0.0"
    * @memberof bb
    */
-  version: "1.12.11",
+  version: "1.12.12",
 
   /**
    * Generate chart
@@ -37106,7 +37595,7 @@ var _defaults = {},
 };
 /**
  * @namespace bb
- * @version 1.12.11
+ * @version 1.12.12
  */
 
 
