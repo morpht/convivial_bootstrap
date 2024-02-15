@@ -52,49 +52,49 @@
   @include media-breakpoint-up(md) {
     &.position {
       &.position--left-33 {
-        > .content > * {
+        > .containerised > * {
           width: 33% !important;
           margin-right: auto;
         }
       }
 
       &.position--left-50 {
-        > .content > * {
+        > .containerised > * {
           width: 50% !important;
           margin-right: auto;
         }
       }
 
       &.position--left-66 {
-        > .content > * {
+        > .containerised > * {
           width: 66% !important;
           margin-right: auto;
         }
       }
 
       &.position--right-33 {
-        > .content > * {
+        > .containerised > * {
           width: 33% !important;
           margin-left: auto;
         }
       }
 
       &.position--right-50 {
-        > .content > * {
+        > .containerised > * {
           width: 50% !important;
           margin-left: auto;
         }
       }
 
       &.position--right-66 {
-        > .content > * {
+        > .containerised > * {
           width: 66% !important;
           margin-left: auto;
         }
       }
 
       &.position--center-33 {
-        > .content > * {
+        > .containerised > * {
           width: 33% !important;
           margin-left: auto;
           margin-right: auto;
@@ -102,7 +102,7 @@
       }
 
       &.position--center-50 {
-        > .content > * {
+        > .containerised > * {
           width: 50% !important;
           margin-left: auto;
           margin-right: auto;
@@ -110,7 +110,7 @@
       }
 
       &.position--center-66 {
-        > .content > * {
+        > .containerised > * {
           width: 66% !important;
           margin-left: auto;
           margin-right: auto;
@@ -121,7 +121,7 @@
 
   // Hide heading but keep available for screen readers.
   &.hide-heading {
-    .content > h2 {
+    .containerised > h2 {
       position: absolute !important;
       clip: rect(1px, 1px, 1px, 1px);
       overflow: hidden;
