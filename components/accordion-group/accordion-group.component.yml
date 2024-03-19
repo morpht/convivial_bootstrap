@@ -6,3 +6,27 @@ $schema: https://git.drupalcode.org/project/sdc/-/raw/1.x/src/metadata.schema.js
 
 # The human readable name.
 name: Accordion group
+
+# Schema for the props. We support www.json-schema.org. Learn more about the
+# syntax there.
+props:
+  # Props are always an object with keys. Each key is a variable in your
+  # component template.
+  type: object
+
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+    classes:
+      type: array
+
+slots:
+  accordions:
+    title: Accordions
+    description: Accordions group's accordions.
+  body:
+    title: Body
+    description: Accordion group's text area.
+  title:
+    title: Heading
+    description: Accordion group's heading.

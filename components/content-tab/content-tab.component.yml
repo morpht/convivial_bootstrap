@@ -6,3 +6,8 @@ $schema: https://git.drupalcode.org/project/sdc/-/raw/1.x/src/metadata.schema.js
 
 # The human readable name.
 name: Content tab
+
+slots:
+  text:
+    title: Text
+    description: Content tab's text area.
