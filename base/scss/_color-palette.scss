@@ -46,6 +46,10 @@
   }
 }
 
+.cp--standard {
+  background-color: var(--bs-body-bg);
+}
+
 // Reset margin for edgy layouts.
 .layout--content-edgy,
 .edgy:not(.edgy--contained) {
