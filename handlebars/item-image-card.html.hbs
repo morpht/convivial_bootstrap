@@ -4,7 +4,7 @@
     <div role="list" class="list">
       {{#each this}}
         <div role="listitem" class="list__item">
-          <div class="stack stack--detail card{{#if link}} card--clickable{{/if}}">
+          <div class="stack stack--detail card card--clickable">
             {{#if image}}
               <div class="stack__image image--decorative">
                 {{{ image }}}
@@ -18,16 +18,12 @@
               {{/if}}
               {{#if date}}
                 <div class="stack__date">
-                  {{~{ date }~}}
+                  {{{ date }}}
                 </div>
               {{/if}}
-              {{#if link}}
+              {{#if title}}
                 <h3 class="stack__title card-title">
-                  <a href="{{~{ link }~}}">{{~{ title }~}}</a>
-                </h3>
-              {{else}}
-                <h3 class="stack__title card-title">
-                  {{~{ title }~}}
+                  {{{ title }}}
                 </h3>
               {{/if}}
               {{#if body}}

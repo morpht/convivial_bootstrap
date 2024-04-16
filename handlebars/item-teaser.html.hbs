@@ -12,16 +12,12 @@
               {{/if}}
               {{#if date}}
                 <div class="teaser__date">
-                  {{~{ date }~}}
+                  {{{ date }}}
                 </div>
               {{/if}}
-              {{#if link}}
+              {{#if title}}
                 <h3 class="teaser__title">
-                  <a href="{{~{ link }~}}">{{~{ title }~}}</a>
-                </h3>
-              {{else}}
-                <h3 class="teaser__title">
-                  {{~{ title }~}}
+                  {{{ title }}}
                 </h3>
               {{/if}}
               {{#if body}}
