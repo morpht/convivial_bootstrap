@@ -28,13 +28,18 @@
 
   &:active,
   &.active {
-    filter: brightness(.9);
+    filter: brightness(0.9);
   }
 
   &:focus-visible {
     background: transparent;
     box-shadow: none;
   }
+}
+
+// Override bootstrap reboot button
+button:focus:not(:focus-visible) {
+  outline: $btn-outline-width $btn-outline-style var(--standard-focus);
 }
 
 //

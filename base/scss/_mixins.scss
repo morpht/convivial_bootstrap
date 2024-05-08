@@ -126,7 +126,6 @@
     color: $color;
     @include gradient-bg($background);
     outline: $btn-outline-width $btn-outline-style $focus;
-    outline-offset: $btn-outline-offset;
   }
 
   &:active,
@@ -150,9 +149,7 @@
   }
 
   &:focus {
-    color: $color;
     outline: $btn-outline-width $btn-outline-style $focus;
-    outline-offset: $btn-outline-offset;
   }
 
   &:active,

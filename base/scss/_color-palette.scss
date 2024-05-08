@@ -118,7 +118,6 @@ $palettes: (
 
       &:focus {
         outline: $btn-outline-width $btn-outline-style map-get($map, focus);
-        outline-offset: $btn-outline-offset;
       }
     }
 
@@ -182,15 +181,13 @@ $palettes: (
       blockquote,
       .callout {
         background: rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-left-width: 5px;
+        border-color: rgba(255, 255, 255, 0.5);
       }
     } @else {
       blockquote,
       .callout {
         background: rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(0, 0, 0, 0.5);
-        border-left-width: 5px;
+        border-color: rgba(0, 0, 0, 0.5);
       }
     }
   }
