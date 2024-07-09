@@ -33,6 +33,11 @@
     @include media-breakpoint-up(sm) {
       max-width: 50%;
     }
+
+    // Make sure that img will always fill the 100%.
+    img {
+      width: 100%;
+    }
   }
 
   &.media-entity--view-mode-medium,
@@ -44,7 +49,7 @@
     }
   }
 
- & .media-entity--view-mode-extra-small {
+  &.media-entity--view-mode-extra-small {
     max-width: 35%;
 
     @include media-breakpoint-up(sm) {
@@ -83,6 +88,11 @@
       margin-left: 0;
       margin-right: 0;
     }
+
+    // Make sure that img will always fill the 100%.
+    img {
+      width: 100%;
+    }
   }
 }
 
@@ -100,7 +110,6 @@ figure {
   }
 
   @include media-breakpoint-up(md) {
-    &,
     &.align-center {
       display: table;
     }
