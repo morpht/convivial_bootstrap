@@ -11,47 +11,32 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("d3-delaunay"), require("d3-polygon"), require("d3-brush"), require("d3-selection"));
+		module.exports = factory(require("d3-brush"), require("d3-selection"));
 	else if(typeof define === 'function' && define.amd)
-		define("bb", ["d3-delaunay", "d3-polygon", "d3-brush", "d3-selection"], factory);
+		define("bb", ["d3-brush", "d3-selection"], factory);
 	else if(typeof exports === 'object')
-		exports["bb"] = factory(require("d3-delaunay"), require("d3-polygon"), require("d3-brush"), require("d3-selection"));
+		exports["bb"] = factory(require("d3-brush"), require("d3-selection"));
 	else
-		root["bb"] = root["bb"] || {}, root["bb"]["plugin"] = root["bb"]["plugin"] || {}, root["bb"]["plugin"]["textoverlap"] = factory(root["d3"], root["d3"], root["d3"], root["d3"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__1__) {
+		root["bb"] = root["bb"] || {}, root["bb"]["plugin"] = root["bb"]["plugin"] || {}, root["bb"]["plugin"]["tableview"] = factory(root["d3"], root["d3"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__1__) {
 return /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ 3:
-/***/ (function(module) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-
-/***/ 12:
-/***/ (function(module) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__12__;
-
-/***/ }),
-
-/***/ 13:
-/***/ (function(module) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__13__;
-
-/***/ }),
-
-/***/ 1:
+/******/ 	var __webpack_modules__ = ([
+/* 0 */,
+/* 1 */
 /***/ (function(module) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
-/***/ })
+/***/ }),
+/* 2 */,
+/* 3 */
+/***/ (function(module) {
 
-/******/ 	});
+module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+
+/***/ })
+/******/ 	]);
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -100,13 +85,9 @@ var __webpack_exports__ = {};
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "default": function() { return /* binding */ TextOverlap; }
+  "default": function() { return /* binding */ TableView; }
 });
 
-// EXTERNAL MODULE: external {"commonjs":"d3-delaunay","commonjs2":"d3-delaunay","amd":"d3-delaunay","root":"d3"}
-var external_commonjs_d3_delaunay_commonjs2_d3_delaunay_amd_d3_delaunay_root_d3_ = __webpack_require__(12);
-// EXTERNAL MODULE: external {"commonjs":"d3-polygon","commonjs2":"d3-polygon","amd":"d3-polygon","root":"d3"}
-var external_commonjs_d3_polygon_commonjs2_d3_polygon_amd_d3_polygon_root_d3_ = __webpack_require__(13);
 // EXTERNAL MODULE: external {"commonjs":"d3-brush","commonjs2":"d3-brush","amd":"d3-brush","root":"d3"}
 var external_commonjs_d3_brush_commonjs2_d3_brush_amd_d3_brush_root_d3_ = __webpack_require__(3);
 // EXTERNAL MODULE: external {"commonjs":"d3-selection","commonjs2":"d3-selection","amd":"d3-selection","root":"d3"}
@@ -620,51 +601,167 @@ class Plugin {
 }
 __publicField(Plugin, "version", "3.12.4");
 
-;// CONCATENATED MODULE: ./src/Plugin/textoverlap/Options.ts
+;// CONCATENATED MODULE: ./src/Plugin/tableview/const.ts
+
+const defaultStyle = {
+  id: "__tableview-style__",
+  class: "bb-tableview",
+  rule: `.bb-tableview {
+		border-collapse:collapse;
+		border-spacing:0;
+		background:#fff;
+		min-width:100%;
+		margin-top:10px;
+		font-family:sans-serif;
+		font-size:.9em;
+	}
+	.bb-tableview tr:hover {
+		background:#eef7ff;
+	}
+	.bb-tableview thead tr {
+		background:#f8f8f8;
+	}
+	.bb-tableview caption,.bb-tableview td,.bb-tableview th {
+		text-align: center;
+		border:1px solid silver;
+		padding:.5em;
+	}
+	.bb-tableview caption {
+		font-size:1.1em;
+		font-weight:700;
+		margin-bottom: -1px;
+	}`
+};
+const tpl = {
+  body: `<caption>{=title}</caption>
+		<thead><tr>{=thead}</tr></thead>
+		<tbody>{=tbody}</tbody>`,
+  thead: `<th scope="col">{=title}</th>`,
+  tbodyHeader: `<th scope="row">{=value}</th>`,
+  tbody: `<td>{=value}</td>`
+};
+
+;// CONCATENATED MODULE: ./src/Plugin/tableview/Options.ts
 class Options {
   constructor() {
     return {
       /**
-       * Selector string for target text nodes within chart element.
-       * - **NOTE:** If no value is given, defaults to data label text elements.
+       * Set tableview holder selector.
+       * - **NOTE:** If not set, will append new holder element dynamically right after chart element.
        * @name selector
-       * @memberof plugin-textoverlap
+       * @memberof plugin-tableview
        * @type {string}
        * @default undefined
        * @example
-       *  // selector for data label text nodes
-       * selector: ".bb-texts text"
+       *   selector: "#table-holder"
        */
       selector: void 0,
       /**
-       * Extent of label overlap prevention.
-       * @name extent
-       * @memberof plugin-textoverlap
-       * @type {number}
-       * @default 1
+       * Set category title text
+       * @name categoryTitle
+       * @memberof plugin-tableview
+       * @type {string}
+       * @default "Category"
        * @example
-       * 	extent: 1
+       *   categoryTitle: "#table-holder"
        */
-      extent: 1,
+      categoryTitle: "Category",
       /**
-       * Minimum area needed to show a data label.
-       * @name area
-       * @memberof plugin-textoverlap
-       * @type {number}
-       * @default 0
+       * Set category text format function.
+       * @name categoryFormat
+       * @memberof plugin-tableview
+       * @type {Function}
+       * @returns {string}
+       * @default function(v) { // will return formatted value according x Axis type }}
        * @example
-       * 	area: 0
+       *   categoryFormat: "#table-holder"
        */
-      area: 0
+      categoryFormat: function(v) {
+        let category = v;
+        if (this.$$.axis.isCategorized()) {
+          category = this.$$.categoryName(v);
+        } else if (this.$$.axis.isTimeSeries()) {
+          category = v.toLocaleDateString();
+        }
+        return category;
+      },
+      /**
+       * Set tableview holder class name.
+       * @name class
+       * @memberof plugin-tableview
+       * @type {string}
+       * @default undefined
+       * @example
+       *   class: "table-class-name"
+       */
+      class: void 0,
+      /**
+       * Set to apply default style(`.bb-tableview`) to tableview element.
+       * @name style
+       * @memberof plugin-tableview
+       * @type {boolean}
+       * @default true
+       * @example
+       *   style: false
+       */
+      style: true,
+      /**
+       * Set tableview title text.
+       * - **NOTE:** If set [title.text](https://naver.github.io/billboard.js/release/latest/doc/Options.html#.title), will be used when this option value is empty.
+       * @name title
+       * @memberof plugin-tableview
+       * @type {string}
+       * @default undefined
+       * @example
+       *   title: "Table Title Text"
+       */
+      title: void 0,
+      /**
+       * Update tableview from data visibility update(ex. legend toggle).
+       * @name updateOnToggle
+       * @memberof plugin-tableview
+       * @type {boolean}
+       * @default true
+       * @example
+       *   legendToggleUpdate: false
+       */
+      updateOnToggle: true,
+      /**
+       * Set how null value to be shown.
+       * @name nullString
+       * @memberof plugin-tableview
+       * @type {string}
+       * @default "-"
+       * @example
+       *   nullString: "N/A"
+       */
+      nullString: "-"
     };
   }
 }
 
-;// CONCATENATED MODULE: ./src/Plugin/textoverlap/index.ts
-var textoverlap_defProp = Object.defineProperty;
-var textoverlap_defNormalProp = (obj, key, value) => key in obj ? textoverlap_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var textoverlap_publicField = (obj, key, value) => {
-  textoverlap_defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+;// CONCATENATED MODULE: ./src/Plugin/tableview/index.ts
+var tableview_defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var tableview_getOwnPropSymbols = Object.getOwnPropertySymbols;
+var tableview_hasOwnProp = Object.prototype.hasOwnProperty;
+var tableview_propIsEnum = Object.prototype.propertyIsEnumerable;
+var tableview_defNormalProp = (obj, key, value) => key in obj ? tableview_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var tableview_spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (tableview_hasOwnProp.call(b, prop))
+      tableview_defNormalProp(a, prop, b[prop]);
+  if (tableview_getOwnPropSymbols)
+    for (var prop of tableview_getOwnPropSymbols(b)) {
+      if (tableview_propIsEnum.call(b, prop))
+        tableview_defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var tableview_publicField = (obj, key, value) => {
+  tableview_defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
 
@@ -672,64 +769,89 @@ var textoverlap_publicField = (obj, key, value) => {
 
 
 
-class TextOverlap extends Plugin {
+class TableView extends Plugin {
   constructor(options) {
     super(options);
-    textoverlap_publicField(this, "config");
+    tableview_publicField(this, "config");
+    tableview_publicField(this, "element");
     this.config = new Options();
     return this;
   }
-  $init() {
+  $beforeInit() {
     loadConfig.call(this, this.options);
   }
-  $redraw() {
-    const { $$: { $el }, config: { selector } } = this;
-    const text = selector ? $el.main.selectAll(selector) : $el.text;
-    !text.empty() && this.preventLabelOverlap(text);
+  $init() {
+    const { class: className, selector, style } = this.config;
+    let element = document.querySelector(
+      selector || `.${className || defaultStyle.class}`
+    );
+    if (!element) {
+      const chart = this.$$.$el.chart.node();
+      element = document.createElement("table");
+      chart.parentNode.insertBefore(element, chart.nextSibling);
+    }
+    if (element.tagName !== "TABLE") {
+      const table = document.createElement("table");
+      element.appendChild(table);
+      element = table;
+    }
+    if (style && !document.getElementById(defaultStyle.id)) {
+      const s = document.createElement("style");
+      s.id = defaultStyle.id;
+      s.innerHTML = defaultStyle.rule;
+      (document.head || document.getElementsByTagName("head")[0]).appendChild(s);
+    }
+    element.classList.add(...[style && defaultStyle.class, className].filter(Boolean));
+    this.element = element;
   }
   /**
-   * Generates the voronoi layout for data labels
-   * @param {Array} points Indices values
-   * @returns {object} Voronoi layout points and corresponding Data points
+   * Generate table
    * @private
    */
-  generateVoronoi(points) {
-    const { $$ } = this;
-    const { scale } = $$;
-    const [min, max] = ["x", "y"].map((v) => scale[v].domain());
-    [min[1], max[0]] = [max[0], min[1]];
-    return external_commonjs_d3_delaunay_commonjs2_d3_delaunay_amd_d3_delaunay_root_d3_.Delaunay.from(points).voronoi([
-      ...min,
-      ...max
-    ]);
-  }
-  /**
-   * Set text label's position to preventg overlap.
-   * @param {d3Selection} text target text selection
-   * @private
-   */
-  preventLabelOverlap(text) {
-    const { extent, area } = this.config;
-    const points = text.data().map((v) => [v.index, v.value]);
-    const voronoi = this.generateVoronoi(points);
-    let i = 0;
-    text.each(function() {
-      const cell = voronoi.cellPolygon(i);
-      if (cell && this) {
-        const [x, y] = points[i];
-        const [cx, cy] = (0,external_commonjs_d3_polygon_commonjs2_d3_polygon_amd_d3_polygon_root_d3_.polygonCentroid)(cell);
-        const polygonArea = Math.abs((0,external_commonjs_d3_polygon_commonjs2_d3_polygon_amd_d3_polygon_root_d3_.polygonArea)(cell));
-        const angle = Math.round(Math.atan2(cy - y, cx - x) / Math.PI * 2);
-        const xTranslate = extent * (angle === 0 ? 1 : -1);
-        const yTranslate = angle === -1 ? -extent : extent + 5;
-        const txtAnchor = Math.abs(angle) === 1 ? "middle" : angle === 0 ? "start" : "end";
-        this.style.display = polygonArea < area ? "none" : "";
-        this.setAttribute("text-anchor", txtAnchor);
-        this.setAttribute("dy", `0.${angle === 1 ? 71 : 35}em`);
-        this.setAttribute("transform", `translate(${xTranslate}, ${yTranslate})`);
-      }
-      i++;
+  generateTable() {
+    const { $$, config, element } = this;
+    const dataToShow = $$.filterTargetsToShow($$.data.targets);
+    let thead = tplProcess(tpl.thead, {
+      title: dataToShow.length ? this.config.categoryTitle : ""
     });
+    let tbody = "";
+    const rows = [];
+    dataToShow.forEach((v) => {
+      thead += tplProcess(tpl.thead, { title: v.id });
+      v.values.forEach((d, i) => {
+        if (!rows[i]) {
+          rows[i] = [d.x];
+        }
+        rows[i].push(d.value);
+      });
+    });
+    rows.forEach((v) => {
+      tbody += `<tr>${v.map(
+        (d, i) => tplProcess(i ? tpl.tbody : tpl.tbodyHeader, {
+          value: i === 0 ? config.categoryFormat.bind(this)(d) : isNumber(d) ? d.toLocaleString() : config.nullString
+        })
+      ).join("")}</tr>`;
+    });
+    const rx = /(<\/?(script|img)[^>]*>|<[^>]+><\/[^>]+>)/ig;
+    const r = tplProcess(tpl.body, __spreadProps(tableview_spreadValues({}, config), {
+      title: config.title || $$.config.title_text || "",
+      thead,
+      tbody
+    })).replace(rx, "");
+    element.innerHTML = r;
+  }
+  $redraw() {
+    const { state } = this.$$;
+    const doNotUpdate = state.resizing || !this.config.updateOnToggle && state.toggling;
+    !doNotUpdate && this.generateTable();
+  }
+  $willDestroy() {
+    var _a, _b;
+    (_a = this.element.parentNode) == null ? void 0 : _a.removeChild(this.element);
+    if (this.$$.charts.length === 1) {
+      const s = document.getElementById(defaultStyle.id);
+      (_b = s == null ? void 0 : s.parentNode) == null ? void 0 : _b.removeChild(s);
+    }
   }
 }
 

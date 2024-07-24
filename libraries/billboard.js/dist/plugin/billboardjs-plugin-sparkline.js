@@ -11,47 +11,32 @@
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("d3-delaunay"), require("d3-polygon"), require("d3-brush"), require("d3-selection"));
+		module.exports = factory(require("d3-brush"), require("d3-selection"));
 	else if(typeof define === 'function' && define.amd)
-		define("bb", ["d3-delaunay", "d3-polygon", "d3-brush", "d3-selection"], factory);
+		define("bb", ["d3-brush", "d3-selection"], factory);
 	else if(typeof exports === 'object')
-		exports["bb"] = factory(require("d3-delaunay"), require("d3-polygon"), require("d3-brush"), require("d3-selection"));
+		exports["bb"] = factory(require("d3-brush"), require("d3-selection"));
 	else
-		root["bb"] = root["bb"] || {}, root["bb"]["plugin"] = root["bb"]["plugin"] || {}, root["bb"]["plugin"]["textoverlap"] = factory(root["d3"], root["d3"], root["d3"], root["d3"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__1__) {
+		root["bb"] = root["bb"] || {}, root["bb"]["plugin"] = root["bb"]["plugin"] || {}, root["bb"]["plugin"]["sparkline"] = factory(root["d3"], root["d3"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__1__) {
 return /******/ (function() { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ 3:
-/***/ (function(module) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
-
-/***/ }),
-
-/***/ 12:
-/***/ (function(module) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__12__;
-
-/***/ }),
-
-/***/ 13:
-/***/ (function(module) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__13__;
-
-/***/ }),
-
-/***/ 1:
+/******/ 	var __webpack_modules__ = ([
+/* 0 */,
+/* 1 */
 /***/ (function(module) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
-/***/ })
+/***/ }),
+/* 2 */,
+/* 3 */
+/***/ (function(module) {
 
-/******/ 	});
+module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+
+/***/ })
+/******/ 	]);
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -100,13 +85,190 @@ var __webpack_exports__ = {};
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "default": function() { return /* binding */ TextOverlap; }
+  "default": function() { return /* binding */ Sparkline; }
 });
 
-// EXTERNAL MODULE: external {"commonjs":"d3-delaunay","commonjs2":"d3-delaunay","amd":"d3-delaunay","root":"d3"}
-var external_commonjs_d3_delaunay_commonjs2_d3_delaunay_amd_d3_delaunay_root_d3_ = __webpack_require__(12);
-// EXTERNAL MODULE: external {"commonjs":"d3-polygon","commonjs2":"d3-polygon","amd":"d3-polygon","root":"d3"}
-var external_commonjs_d3_polygon_commonjs2_d3_polygon_amd_d3_polygon_root_d3_ = __webpack_require__(13);
+;// CONCATENATED MODULE: ./src/config/classes.ts
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+const $COMMON = {
+  button: "bb-button",
+  chart: "bb-chart",
+  empty: "bb-empty",
+  main: "bb-main",
+  target: "bb-target",
+  EXPANDED: "_expanded_"
+};
+const $ARC = {
+  arc: "bb-arc",
+  arcLabelLine: "bb-arc-label-line",
+  arcRange: "bb-arc-range",
+  arcs: "bb-arcs",
+  chartArc: "bb-chart-arc",
+  chartArcs: "bb-chart-arcs",
+  chartArcsBackground: "bb-chart-arcs-background",
+  chartArcsTitle: "bb-chart-arcs-title",
+  needle: "bb-needle"
+};
+const $AREA = {
+  area: "bb-area",
+  areas: "bb-areas"
+};
+const $AXIS = {
+  axis: "bb-axis",
+  axisX: "bb-axis-x",
+  axisXLabel: "bb-axis-x-label",
+  axisY: "bb-axis-y",
+  axisY2: "bb-axis-y2",
+  axisY2Label: "bb-axis-y2-label",
+  axisYLabel: "bb-axis-y-label",
+  axisXTooltip: "bb-axis-x-tooltip",
+  axisYTooltip: "bb-axis-y-tooltip",
+  axisY2Tooltip: "bb-axis-y2-tooltip"
+};
+const $BAR = {
+  bar: "bb-bar",
+  bars: "bb-bars",
+  chartBar: "bb-chart-bar",
+  chartBars: "bb-chart-bars"
+};
+const $CANDLESTICK = {
+  candlestick: "bb-candlestick",
+  candlesticks: "bb-candlesticks",
+  chartCandlestick: "bb-chart-candlestick",
+  chartCandlesticks: "bb-chart-candlesticks",
+  valueDown: "bb-value-down",
+  valueUp: "bb-value-up"
+};
+const $CIRCLE = {
+  chartCircles: "bb-chart-circles",
+  circle: "bb-circle",
+  circles: "bb-circles"
+};
+const $COLOR = {
+  colorPattern: "bb-color-pattern",
+  colorScale: "bb-colorscale"
+};
+const $DRAG = {
+  dragarea: "bb-dragarea",
+  INCLUDED: "_included_"
+};
+const $FUNNEL = {
+  funnel: "bb-funnel",
+  chartFunnel: "bb-chart-funnel",
+  chartFunnels: "bb-chart-funnels",
+  funnelBackground: "bb-funnel-background"
+};
+const $GAUGE = {
+  chartArcsGaugeMax: "bb-chart-arcs-gauge-max",
+  chartArcsGaugeMin: "bb-chart-arcs-gauge-min",
+  chartArcsGaugeUnit: "bb-chart-arcs-gauge-unit",
+  chartArcsGaugeTitle: "bb-chart-arcs-gauge-title",
+  gaugeValue: "bb-gauge-value"
+};
+const $LEGEND = {
+  legend: "bb-legend",
+  legendBackground: "bb-legend-background",
+  legendItem: "bb-legend-item",
+  legendItemEvent: "bb-legend-item-event",
+  legendItemHidden: "bb-legend-item-hidden",
+  legendItemPoint: "bb-legend-item-point",
+  legendItemTile: "bb-legend-item-tile"
+};
+const $LINE = {
+  chartLine: "bb-chart-line",
+  chartLines: "bb-chart-lines",
+  line: "bb-line",
+  lines: "bb-lines"
+};
+const $EVENT = {
+  eventRect: "bb-event-rect",
+  eventRects: "bb-event-rects",
+  eventRectsMultiple: "bb-event-rects-multiple",
+  eventRectsSingle: "bb-event-rects-single"
+};
+const $FOCUS = {
+  focused: "bb-focused",
+  defocused: "bb-defocused",
+  legendItemFocused: "bb-legend-item-focused",
+  xgridFocus: "bb-xgrid-focus",
+  ygridFocus: "bb-ygrid-focus"
+};
+const $GRID = {
+  grid: "bb-grid",
+  gridLines: "bb-grid-lines",
+  xgrid: "bb-xgrid",
+  xgridLine: "bb-xgrid-line",
+  xgridLines: "bb-xgrid-lines",
+  xgrids: "bb-xgrids",
+  ygrid: "bb-ygrid",
+  ygridLine: "bb-ygrid-line",
+  ygridLines: "bb-ygrid-lines",
+  ygrids: "bb-ygrids"
+};
+const $LEVEL = {
+  level: "bb-level",
+  levels: "bb-levels"
+};
+const $RADAR = {
+  chartRadar: "bb-chart-radar",
+  chartRadars: "bb-chart-radars"
+};
+const $REGION = {
+  region: "bb-region",
+  regions: "bb-regions"
+};
+const $SELECT = {
+  selectedCircle: "bb-selected-circle",
+  selectedCircles: "bb-selected-circles",
+  SELECTED: "_selected_"
+};
+const $SHAPE = {
+  shape: "bb-shape",
+  shapes: "bb-shapes"
+};
+const $SUBCHART = {
+  brush: "bb-brush",
+  subchart: "bb-subchart"
+};
+const $TEXT = {
+  chartText: "bb-chart-text",
+  chartTexts: "bb-chart-texts",
+  text: "bb-text",
+  texts: "bb-texts",
+  title: "bb-title",
+  TextOverlapping: "text-overlapping"
+};
+const $TOOLTIP = {
+  tooltip: "bb-tooltip",
+  tooltipContainer: "bb-tooltip-container",
+  tooltipName: "bb-tooltip-name"
+};
+const $TREEMAP = {
+  treemap: "bb-treemap",
+  chartTreemap: "bb-chart-treemap",
+  chartTreemaps: "bb-chart-treemaps"
+};
+const $ZOOM = {
+  buttonZoomReset: "bb-zoom-reset",
+  zoomBrush: "bb-zoom-brush"
+};
+/* harmony default export */ var classes = (__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues({}, $COMMON), $ARC), $AREA), $AXIS), $BAR), $CANDLESTICK), $CIRCLE), $COLOR), $DRAG), $GAUGE), $LEGEND), $LINE), $EVENT), $FOCUS), $FUNNEL), $GRID), $RADAR), $REGION), $SELECT), $SHAPE), $SUBCHART), $TEXT), $TOOLTIP), $TREEMAP), $ZOOM));
+
 // EXTERNAL MODULE: external {"commonjs":"d3-brush","commonjs2":"d3-brush","amd":"d3-brush","root":"d3"}
 var external_commonjs_d3_brush_commonjs2_d3_brush_amd_d3_brush_root_d3_ = __webpack_require__(3);
 // EXTERNAL MODULE: external {"commonjs":"d3-selection","commonjs2":"d3-selection","amd":"d3-selection","root":"d3"}
@@ -138,19 +300,19 @@ const [
 
 
 ;// CONCATENATED MODULE: ./src/module/util.ts
-var __defProp = Object.defineProperty;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+var util_defProp = Object.defineProperty;
+var util_getOwnPropSymbols = Object.getOwnPropertySymbols;
+var util_hasOwnProp = Object.prototype.hasOwnProperty;
+var util_propIsEnum = Object.prototype.propertyIsEnumerable;
+var util_defNormalProp = (obj, key, value) => key in obj ? util_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var util_spreadValues = (a, b) => {
   for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
+    if (util_hasOwnProp.call(b, prop))
+      util_defNormalProp(a, prop, b[prop]);
+  if (util_getOwnPropSymbols)
+    for (var prop of util_getOwnPropSymbols(b)) {
+      if (util_propIsEnum.call(b, prop))
+        util_defNormalProp(a, prop, b[prop]);
     }
   return a;
 };
@@ -307,7 +469,7 @@ function deepClone(...objectN) {
     }
     return v;
   };
-  return objectN.map((v) => clone(v)).reduce((a, c) => __spreadValues(__spreadValues({}, a), c));
+  return objectN.map((v) => clone(v)).reduce((a, c) => util_spreadValues(util_spreadValues({}, a), c));
 }
 function extend(target = {}, source) {
   if (isArray(source)) {
@@ -620,118 +782,206 @@ class Plugin {
 }
 __publicField(Plugin, "version", "3.12.4");
 
-;// CONCATENATED MODULE: ./src/Plugin/textoverlap/Options.ts
+;// CONCATENATED MODULE: ./src/Plugin/sparkline/Options.ts
 class Options {
   constructor() {
     return {
       /**
-       * Selector string for target text nodes within chart element.
-       * - **NOTE:** If no value is given, defaults to data label text elements.
+       * Specify sparkline charts holder selector.
+       * - **NOTE:** The amount of holder should match with the amount of data. If has less, will append necessaray amount nodes as sibling of main chart.
        * @name selector
-       * @memberof plugin-textoverlap
+       * @memberof plugin-sparkline
        * @type {string}
        * @default undefined
        * @example
-       *  // selector for data label text nodes
-       * selector: ".bb-texts text"
+       *   selector: ".sparkline"
        */
-      selector: void 0,
-      /**
-       * Extent of label overlap prevention.
-       * @name extent
-       * @memberof plugin-textoverlap
-       * @type {number}
-       * @default 1
-       * @example
-       * 	extent: 1
-       */
-      extent: 1,
-      /**
-       * Minimum area needed to show a data label.
-       * @name area
-       * @memberof plugin-textoverlap
-       * @type {number}
-       * @default 0
-       * @example
-       * 	area: 0
-       */
-      area: 0
+      selector: void 0
     };
   }
 }
 
-;// CONCATENATED MODULE: ./src/Plugin/textoverlap/index.ts
-var textoverlap_defProp = Object.defineProperty;
-var textoverlap_defNormalProp = (obj, key, value) => key in obj ? textoverlap_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var textoverlap_publicField = (obj, key, value) => {
-  textoverlap_defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+;// CONCATENATED MODULE: ./src/Plugin/sparkline/index.ts
+var sparkline_defProp = Object.defineProperty;
+var sparkline_defNormalProp = (obj, key, value) => key in obj ? sparkline_defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var sparkline_publicField = (obj, key, value) => {
+  sparkline_defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
 
 
 
 
-
-class TextOverlap extends Plugin {
+class Sparkline extends Plugin {
   constructor(options) {
     super(options);
-    textoverlap_publicField(this, "config");
+    sparkline_publicField(this, "config");
+    sparkline_publicField(this, "element");
     this.config = new Options();
     return this;
   }
-  $init() {
+  $beforeInit() {
     loadConfig.call(this, this.options);
+    this.validate();
+    this.element = [].slice.call(document.querySelectorAll(this.config.selector));
+    this.overrideInternals();
+    this.overrideOptions();
+    this.overHandler = this.overHandler.bind(this);
+    this.moveHandler = this.moveHandler.bind(this);
+    this.outHandler = this.outHandler.bind(this);
+  }
+  validate() {
+    const { $$, config } = this;
+    let msg = "";
+    if (!config.selector || !document.querySelector(config.selector)) {
+      msg = "No holder elements found from given selector option.";
+    }
+    if ($$.hasType("bubble") || $$.hasType("scatter") || $$.hasArcType($$.data.targets)) {
+      msg = "Contains non supported chart types.";
+    }
+    if (msg) {
+      throw new Error(`[Sparkline plugin] ${msg}`);
+    }
+  }
+  overrideInternals() {
+    const { $$ } = this;
+    const { getBarW, getIndices } = $$;
+    $$.getIndices = function(indices, d, caller) {
+      return caller === "getShapeX" ? {} : getIndices.call(this, indices, d);
+    };
+    $$.getBarW = function(type, axis) {
+      return getBarW.call(this, type, axis, 1);
+    };
+  }
+  overrideOptions() {
+    const { config } = this.$$;
+    config.legend_show = false;
+    config.resize_auto = false;
+    config.axis_x_show = false;
+    if (config.padding !== false) {
+      const hasOption = (o) => Object.keys(o || {}).length > 0;
+      if (hasOption(config.axis_x_padding)) {
+        config.axis_x_padding = {
+          left: 15,
+          right: 15,
+          unit: "px"
+        };
+      }
+      if (hasOption(config.axis_y_padding)) {
+        config.axis_y_padding = 5;
+      }
+    }
+    config.axis_y_show = false;
+    if (!config.tooltip_position) {
+      config.tooltip_position = function(data, width, height) {
+        const { internal: { state: { event } } } = this;
+        let top = event.pageY - height * 1.35;
+        let left = event.pageX - width / 2;
+        if (top < 0) {
+          top = 0;
+        }
+        if (left < 0) {
+          left = 0;
+        }
+        return { top, left };
+      };
+    }
+  }
+  $init() {
+    var _a;
+    const { $$: { $el } } = this;
+    $el.chart.style("width", "0").style("height", "0").style("pointer-events", "none");
+    ((_a = $el.tooltip) == null ? void 0 : _a.node()) && document.body.appendChild($el.tooltip.node());
+  }
+  $afterInit() {
+    const { $$ } = this;
+    $$.$el.svg.attr("style", null).style("width", "0").style("height", "0");
+    this.bindEvents(true);
+  }
+  /**
+   * Bind tooltip event handlers for each sparkline elements.
+   * @param {boolean} bind or unbind
+   * @private
+   */
+  bindEvents(bind = true) {
+    const { $$: { config } } = this;
+    if (config.interaction_enabled && config.tooltip_show) {
+      const method = `${bind ? "add" : "remove"}EventListener`;
+      this.element.forEach((el) => {
+        const svg = el.querySelector("svg");
+        svg[method]("mouseover", this.overHandler);
+        svg[method]("mousemove", this.moveHandler);
+        svg[method]("mouseout", this.outHandler);
+      });
+    }
+  }
+  overHandler(e) {
+    const { $$ } = this;
+    const { state: { eventReceiver } } = $$;
+    eventReceiver.rect = e.target.getBoundingClientRect();
+  }
+  moveHandler(e) {
+    var _a, _b, _c, _d;
+    const { $$ } = this;
+    const index = $$.getDataIndexFromEvent(e);
+    const data = (_a = $$.api.data(e.target.__id)) == null ? void 0 : _a[0];
+    const d = (_b = data == null ? void 0 : data.values) == null ? void 0 : _b[index];
+    if (d && !d.name) {
+      d.name = d.id;
+    }
+    $$.state.event = e;
+    if (((_c = $$.isPointFocusOnly) == null ? void 0 : _c.call($$)) && d) {
+      (_d = $$.showCircleFocus) == null ? void 0 : _d.call($$, [d]);
+    }
+    $$.setExpand(index, data.id, true);
+    $$.showTooltip([d], e.target);
+  }
+  outHandler(e) {
+    const { $$ } = this;
+    $$.state.event = e;
+    $$.isPointFocusOnly() ? $$.hideCircleFocus() : $$.unexpandCircles();
+    $$.hideTooltip();
   }
   $redraw() {
-    const { $$: { $el }, config: { selector } } = this;
-    const text = selector ? $el.main.selectAll(selector) : $el.text;
-    !text.empty() && this.preventLabelOverlap(text);
-  }
-  /**
-   * Generates the voronoi layout for data labels
-   * @param {Array} points Indices values
-   * @returns {object} Voronoi layout points and corresponding Data points
-   * @private
-   */
-  generateVoronoi(points) {
+    var _a;
     const { $$ } = this;
-    const { scale } = $$;
-    const [min, max] = ["x", "y"].map((v) => scale[v].domain());
-    [min[1], max[0]] = [max[0], min[1]];
-    return external_commonjs_d3_delaunay_commonjs2_d3_delaunay_amd_d3_delaunay_root_d3_.Delaunay.from(points).voronoi([
-      ...min,
-      ...max
-    ]);
-  }
-  /**
-   * Set text label's position to preventg overlap.
-   * @param {d3Selection} text target text selection
-   * @private
-   */
-  preventLabelOverlap(text) {
-    const { extent, area } = this.config;
-    const points = text.data().map((v) => [v.index, v.value]);
-    const voronoi = this.generateVoronoi(points);
-    let i = 0;
-    text.each(function() {
-      const cell = voronoi.cellPolygon(i);
-      if (cell && this) {
-        const [x, y] = points[i];
-        const [cx, cy] = (0,external_commonjs_d3_polygon_commonjs2_d3_polygon_amd_d3_polygon_root_d3_.polygonCentroid)(cell);
-        const polygonArea = Math.abs((0,external_commonjs_d3_polygon_commonjs2_d3_polygon_amd_d3_polygon_root_d3_.polygonArea)(cell));
-        const angle = Math.round(Math.atan2(cy - y, cx - x) / Math.PI * 2);
-        const xTranslate = extent * (angle === 0 ? 1 : -1);
-        const yTranslate = angle === -1 ? -extent : extent + 5;
-        const txtAnchor = Math.abs(angle) === 1 ? "middle" : angle === 0 ? "start" : "end";
-        this.style.display = polygonArea < area ? "none" : "";
-        this.setAttribute("text-anchor", txtAnchor);
-        this.setAttribute("dy", `0.${angle === 1 ? 71 : 35}em`);
-        this.setAttribute("transform", `translate(${xTranslate}, ${yTranslate})`);
+    const { $el } = $$;
+    let el = this.element;
+    const data = $$.api.data();
+    const svgWrapper = (_a = $el.chart.html().match(/<svg[^>]*>/)) == null ? void 0 : _a[0];
+    if (el.length < data.length) {
+      const chart = $el.chart.node();
+      for (let i = data.length - el.length; i > 0; i--) {
+        chart.parentNode.insertBefore(el[0].cloneNode(), chart.nextSibling);
       }
-      i++;
+      this.element = document.querySelectorAll(this.config.selector);
+      el = this.element;
+    }
+    data.map((v) => v.id).forEach((id, i) => {
+      const selector = `.${$COMMON.target}-${id}`;
+      const shape = $el.main.selectAll(selector);
+      let svg = el[i].querySelector("svg");
+      if (!svg) {
+        el[i].innerHTML = `${svgWrapper}</svg>`;
+        svg = el[i].querySelector("svg");
+        svg.__id = id;
+      }
+      if (!svg.querySelector(selector)) {
+        shape.style("opacity", null);
+      }
+      shape.style("fill", "none").style("opacity", null);
+      svg.innerHTML = "";
+      svg.appendChild(shape.node());
+    });
+  }
+  $willDestroy() {
+    this.bindEvents(false);
+    this.element.forEach((el) => {
+      el.innerHTML = "";
     });
   }
 }
+sparkline_publicField(Sparkline, "version", `0.0.1`);
 
 __webpack_exports__ = __webpack_exports__["default"];
 /******/ 	return __webpack_exports__;
