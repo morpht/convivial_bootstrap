@@ -6,7 +6,7 @@
 
 // Alignment.
 .align-left {
-  margin-right: 1rem;
+  margin-right: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -17,59 +17,48 @@
 }
 
 .align-right {
-  margin-left: 1rem;
+  margin-left: 2rem;
   margin-bottom: 1rem;
 }
 
-// :not(:only-child) prevents from adding margin to view modes.
+// Prevents from adding margin to view modes.
 .media-entity:not(:only-child) {
   margin-bottom: 1rem;
 }
 
 // Image view modes.
 .media-entity--type-image {
-  &.media-entity--view-mode-half,
-  &.media-entity--view-mode-half-wide {
-    @include media-breakpoint-up(sm) {
+  &.media-entity--view-mode-extra-small {
+    @include media-breakpoint-down(sm) {
+      max-width: 33%;
+    }
+  }
+
+  &.media-entity--view-mode-small {
+    @include media-breakpoint-down(md) {
       max-width: 50%;
     }
+  }
 
-    // Make sure that img will always fill the 100%.
-    img {
-      width: 100%;
+  &.media-entity--view-mode-medium {
+    @include media-breakpoint-down(md) {
+      max-width: 66%;
     }
   }
 
-  &.media-entity--view-mode-medium,
-  &.media-entity--view-mode-small {
-    max-width: 50%;
-
-    @include media-breakpoint-up(sm) {
-      max-width: 100%;
-    }
-  }
-
-  &.media-entity--view-mode-extra-small {
-    max-width: 35%;
-
-    @include media-breakpoint-up(sm) {
-      max-width: 100%;
-    }
-  }
-
-  &.media-entity--view-mode-tiny {
-    max-width: 17%;
-
-    @include media-breakpoint-up(sm) {
-      max-width: 100%;
-    }
-  }
-
-  // Large and Half view modes pops open on mobile.
-  &.media-entity--view-mode-half,
-  &.media-entity--view-mode-half-wide,
   &.media-entity--view-mode-large {
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(lg) {
+      max-width: 66%;
+    }
+
+    @include media-breakpoint-down(md) {
+      max-width: 100%;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
       &.align-left,
       &.align-right {
         float: none;
@@ -79,28 +68,172 @@
     }
   }
 
-  // Whole view mode always pops open.
+  &.media-entity--view-mode-tiny {
+    @include media-breakpoint-down(sm) {
+      max-width: 25%;
+    }
+
+    &.align-left {
+      margin-right: 1rem;
+    }
+
+    &.align-right {
+      margin-left: 1rem;
+    }
+  }
+
+  &.media-entity--view-mode-half,
+  &.media-entity--view-mode-half-wide {
+    max-width: 50%;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
   &.media-entity--view-mode-whole,
   &.media-entity--view-mode-whole-wide {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
     &.align-left,
     &.align-right {
       float: none;
       margin-left: 0;
       margin-right: 0;
-    }
-
-    // Make sure that img will always fill the 100%.
-    img {
-      width: 100%;
     }
   }
 }
 
 // Images with caption.
-figure {
+figure.drupal-media {
+  display: table;
+  margin-bottom: 1rem;
 
-  // View modes with caption pops open on mobile.
-  @include media-breakpoint-down(md) {
+  .media-entity--type-image {
+    margin-bottom: 0;
+  }
+
+  figcaption {
+    display: table-caption;
+    font-size: $font-size-sm;
+    padding: 0.5rem 0.75rem;
+    background: rgba(0, 0, 0, 0.05);
+    word-break: break-word;
+    caption-side: bottom;
+  }
+
+  .media-entity--view-mode-tiny {
+    + figcaption {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  &:has(> .media-entity--view-mode-extra-small) {
+    @include media-breakpoint-down(sm) {
+      max-width: 33%;
+
+      .media-entity {
+        max-width: unset;
+      }
+    }
+  }
+
+  &:has(> .media-entity--view-mode-small) {
+    @include media-breakpoint-down(md) {
+      max-width: 50%;
+
+      .media-entity {
+        max-width: unset;
+      }
+    }
+  }
+
+  &:has(> .media-entity--view-mode-medium) {
+    @include media-breakpoint-down(md) {
+      max-width: 66%;
+
+      .media-entity {
+        max-width: unset;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      max-width: 50%;
+
+      .media-entity {
+        max-width: unset;
+      }
+    }
+  }
+
+  &:has(> .media-entity--view-mode-large) {
+    @include media-breakpoint-down(lg) {
+      max-width: 66%;
+
+      .media-entity {
+        max-width: unset;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      max-width: 100%;
+
+      .media-entity {
+        max-width: unset;
+      }
+
+      &.align-left,
+      &.align-right {
+        float: none;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+
+  &:has(> .media-entity--view-mode-tiny) {
+    @include media-breakpoint-down(sm) {
+      max-width: 25%;
+
+      .media-entity {
+        max-width: unset;
+      }
+    }
+
+    &.align-left {
+      margin-right: 1rem;
+    }
+
+    &.align-right {
+      margin-left: 1rem;
+    }
+  }
+
+  &:has(> .media-entity--view-mode-half),
+  &:has(> .media-entity--view-mode-half-wide) {
+    max-width: 50%;
+    width: 100%;
+
+    .media-entity {
+      max-width: unset;
+    }
+  }
+
+  &:has(> .media-entity--view-mode-whole),
+  &:has(> .media-entity--view-mode-whole-wide) {
+    width: 100%;
+
+    .media-entity {
+      max-width: unset;
+    }
+
     &.align-left,
     &.align-right {
       float: none;
@@ -108,30 +241,9 @@ figure {
       margin-right: 0;
     }
   }
-
-  @include media-breakpoint-up(md) {
-    &.align-center {
-      display: table;
-    }
-  }
-
-  // Image needs to be always 100% wide.
-  img {
-    width: 100%;
-  }
-
-  .media-entity.media-entity--type-image {
-    margin-bottom: 0;
-    max-width: 100%;
-  }
-
-  figcaption {
-    padding-top: calc($grid-gutter-width / 2);
-    padding-bottom: calc($grid-gutter-width / 2);
-  }
 }
 
-// Transcript
+// Transcript.
 .transcript {
   .accordion-body {
     font-size: $font-size-base;
