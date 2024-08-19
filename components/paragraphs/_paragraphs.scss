@@ -47,3 +47,9 @@
     }
   }
 }
+
+// Components spacing.
+.component__heading + .component__body,
+.component__heading + .list {
+  margin-top: $grid-gutter-width;
+}
