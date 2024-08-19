@@ -112,6 +112,12 @@
       h6 {
         font-size: $hero-h6-font-size-lg;
       }
+
+      blockquote {
+        margin-top: $hero-blockquote-spacing-lg;
+        margin-bottom: $hero-blockquote-spacing-lg;
+        padding: $hero-blockquote-spacing-lg;
+      }
     }
 
     .component__cta {

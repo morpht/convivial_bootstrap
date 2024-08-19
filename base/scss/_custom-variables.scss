@@ -15,14 +15,18 @@ $z-index-navbar-header:                          500;
 // Hero
 $hero-scale:                      1.15;
 $hero-scale-lg:                   1.25;
+
+// Hero spacing
 $hero-body-spacing:               calc($grid-gutter-width * 2);
 $hero-cta-spacing:                calc($grid-gutter-width * 2);
-$hero-horizontal-spacing:         0;
 $hero-vertical-spacing:           calc($grid-gutter-width * 3);
 $hero-vertical-spacing-lg:        calc($grid-gutter-width * 4);
+$hero-blockquote-spacing-lg:      $grid-gutter-width;
 
+// Hero typography
 $hero-font-size:                  $font-size-base * $hero-scale;
 $hero-introduction-font-size:     $introduction-font-size * $hero-scale;
+
 $hero-font-size-lg:               $font-size-base * $hero-scale-lg;
 $hero-introduction-font-size-lg:  $introduction-font-size * $hero-scale-lg;
 
@@ -32,6 +36,7 @@ $hero-h3-font-size:               $h3-font-size * $hero-scale;
 $hero-h4-font-size:               $h4-font-size * $hero-scale;
 $hero-h5-font-size:               $h5-font-size * $hero-scale;
 $hero-h6-font-size:               $h6-font-size * $hero-scale;
+
 $hero-h1-font-size-lg:            $h1-font-size * $hero-scale-lg;
 $hero-h2-font-size-lg:            $h2-font-size * $hero-scale-lg;
 $hero-h3-font-size-lg:            $h3-font-size * $hero-scale-lg;
