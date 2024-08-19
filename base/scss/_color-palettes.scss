@@ -303,13 +303,9 @@ $palettes: (
       }
     }
 
-    // Callout
-    @if $is_dark == true {
-      blockquote,
-      .callout {
-        background: rgba(0, 0, 0, 0.08);
-        border-color: rgba(255, 255, 255, 0.5);
-      }
+    // Blockquote
+    blockquote {
+      border-color: map-get($palette, accent);
     }
 
     // Figure
