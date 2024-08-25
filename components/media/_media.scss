@@ -111,10 +111,14 @@
   }
 }
 
-// Images with caption.
-figure.drupal-media {
+// Figure with caption.
+figure.figure-with-caption {
   display: table;
-  margin-bottom: $paragraph-margin-bottom;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: $paragraph-margin-bottom;
+  }
 
   .media-entity--type-image {
     margin-bottom: 0;
@@ -236,6 +240,39 @@ figure.drupal-media {
 
     &.align-left,
     &.align-right {
+      float: none;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &:has(> .media-entity--type-video),
+  &:has(> .media-entity--type-remote-video) {
+    &.align-left,
+    &.align-right {
+      width: 50%;
+
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// Video.
+.media-entity--type-video,
+.media-entity--type-remote-video {
+  width: 100%;
+
+  &.align-left,
+  &.align-right {
+    width: 50%;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
       float: none;
       margin-left: 0;
       margin-right: 0;
