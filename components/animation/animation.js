@@ -9,19 +9,6 @@
             delay = animations[paragraphId].delay,
             repeat = animations[paragraphId].repeat;
 
-          // Adjust logic for repeat to make it more human friendly.
-          if (repeat === 0) {
-            repeat = -1;
-          }
-          else if (repeat > 0) {
-            repeat = repeat - 1;
-          }
-
-          // If Loops defined, it wins over the Delay.
-          if (repeat !== undefined) {
-            delay = 0;
-          }
-
           // init controller
           let controller = new ScrollMagic.Controller();
 
