@@ -170,12 +170,6 @@ popperjs:
   js:
     libraries/@popperjs/core/dist/umd/popper.min.js: { minified: true }
 
-read-speaker:
-  header: true
-  js:
-    components/readspeaker/readspeaker.js: { }
-    //f1-eu.readspeaker.com/script/3/webReader/webReader.js?pids=wr: { type: external, minified: true }
-
 search:
   js:
     components/search/search.js: { }
