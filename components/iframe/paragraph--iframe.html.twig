@@ -36,18 +36,17 @@
  * @see template_preprocess_paragraph()
  */
 #}
-
 {% set classes = [
-    'iFrame',
-    'paragraph',
-    'paragraph--type--' ~ paragraph.bundle|clean_class,
-    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  'iframe',
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
 ] %}
 
 {{ include ('convivial_bootstrap:iframe', {
-    attributes,
-    classes,
-    url : paragraph.field_iframe_url.value[0].uri|replace({'entity:': '/'}),
-    height : paragraph.field_iframe_height.value,
-    fullscreen : paragraph.field_iframe_fullscreen.value == '1' ? 'true' : 'false',
+  attributes,
+  classes,
+  url: paragraph.field_iframe_url[0].url.toString(),
+  height: paragraph.field_iframe_height.value,
+  fullscreen: paragraph.field_iframe_fullscreen.value == '1' ? 'true' : 'false',
 }) }}
